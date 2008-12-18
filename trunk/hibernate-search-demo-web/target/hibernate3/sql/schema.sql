@@ -1,0 +1,10 @@
+alter table resume drop foreign key FKC84DC82DF3DA6FE7;
+drop table if exists resume;
+drop table if exists user;
+create table resume (id bigint not null auto_increment, summary varchar(255), content blob, lastUpdated date, applicant_id bigint, primary key (id)) ENGINE=InnoDB;
+create table user (id bigint not null auto_increment, firstName varchar(255), lastName varchar(255), middleName varchar(255), emailAddress varchar(255), primary key (id)) ENGINE=InnoDB;
+create index summaryIndex on resume (summary);
+alter table resume add index FKC84DC82DF3DA6FE7 (applicant_id), add constraint FKC84DC82DF3DA6FE7 foreign key (applicant_id) references user (id);
+create index emailAddressIndex on user (emailAddress);
+create index lastNameIndex on user (lastName);
+create index firstNameIndex on user (firstName);

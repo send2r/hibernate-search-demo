@@ -1,0 +1,95 @@
+2008-11-13 10:11:05,535 [main] DEBUG demo.hibernatesearch.service.ResumeManagerTest  - testSeFindResumesWithDocHandler - A Perl PHP developer with 10 years web development experience
+2008-11-13 10:11:06,081 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesForUser miliseconds- 31
+2008-11-13 10:11:06,097 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesForUser miliseconds- 0
+2008-11-13 10:11:06,472 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindMatchCount miliseconds- 344
+2008-11-13 10:11:06,488 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindMatchCount miliseconds- 0
+2008-11-13 10:11:06,534 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesWithPagination - A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 10:11:06,534 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesWithPagination - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:11:06,722 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithPagination - A Java developer with advanced web services development skills.
+2008-11-13 10:11:06,722 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithPagination - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:11:06,753 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:11:06,753 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with advanced web services development skills.
+2008-11-13 10:11:06,769 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 10:11:06,769 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java web 2.0 programmer with DWR, ECHO, GWT, AJAX, RSS, ATOM, and RESTful web services development experience.
+2008-11-13 10:11:06,769 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with EJB, SEAM development experience.
+2008-11-13 10:11:06,784 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.6189965 : A Java web 2.0 programmer with DWR, ECHO, GWT, AJAX, RSS, ATOM, and RESTful web services development experience.
+2008-11-13 10:11:06,784 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.7454219 : A Java developer with advanced web services development skills.
+2008-11-13 10:11:06,784 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.49694788 : A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 10:11:06,784 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.6211849 : A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:11:06,784 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess miliseconds- 0
+2008-11-13 10:38:48,351 [main] DEBUG demo.hibernatesearch.service.ResumeManagerTest  - testSeFindResumesWithDocHandler - A Perl PHP developer with 10 years web development experience
+2008-11-13 10:38:48,976 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:38:48,976 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with advanced web services development skills.
+2008-11-13 10:38:48,976 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 10:38:48,976 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java web 2.0 programmer with DWR, ECHO, GWT, AJAX, RSS, ATOM, and RESTful web services development experience.
+2008-11-13 10:38:48,976 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with EJB, SEAM development experience.
+2008-11-13 10:38:49,007 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesForUser miliseconds- 15
+2008-11-13 10:38:49,054 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesForUser miliseconds- 16
+2008-11-13 10:38:49,351 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindMatchCount miliseconds- 281
+2008-11-13 10:38:49,366 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindMatchCount miliseconds- 0
+2008-11-13 10:38:49,413 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesWithPagination - A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 10:38:49,413 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesWithPagination - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:38:49,445 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithPagination - A Java developer with advanced web services development skills.
+2008-11-13 10:38:49,445 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithPagination - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:38:49,460 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.63494736 : A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:38:49,460 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.6304099 : A Java web 2.0 programmer with DWR, ECHO, GWT, AJAX, RSS, ATOM, and RESTful web services development experience.
+2008-11-13 10:38:49,460 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.5079579 : A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 10:38:49,460 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.76193684 : A Java developer with advanced web services development skills.
+2008-11-13 10:38:49,460 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess miliseconds- 0
+2008-11-13 10:39:49,940 [main] DEBUG demo.hibernatesearch.service.ResumeManagerTest  - testSeFindResumesWithDocHandler - A Perl PHP developer with 10 years web development experience
+2008-11-13 10:39:50,565 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:39:50,565 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with advanced web services development skills.
+2008-11-13 10:39:50,565 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 10:39:50,565 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java web 2.0 programmer with DWR, ECHO, GWT, AJAX, RSS, ATOM, and RESTful web services development experience.
+2008-11-13 10:39:50,565 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with EJB, SEAM development experience.
+2008-11-13 10:39:50,596 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesForUser miliseconds- 15
+2008-11-13 10:39:50,628 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesForUser miliseconds- 0
+2008-11-13 10:39:50,924 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindMatchCount miliseconds- 281
+2008-11-13 10:39:50,956 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindMatchCount miliseconds- 16
+2008-11-13 10:39:50,987 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesWithPagination - A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 10:39:50,987 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesWithPagination - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:39:51,174 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithPagination - A Java developer with advanced web services development skills.
+2008-11-13 10:39:51,174 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithPagination - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:39:51,206 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.64184785 : A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:39:51,206 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.5134783 : A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 10:39:51,206 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.7702175 : A Java developer with advanced web services development skills.
+2008-11-13 10:39:51,206 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.6361141 : A Java web 2.0 programmer with DWR, ECHO, GWT, AJAX, RSS, ATOM, and RESTful web services development experience.
+2008-11-13 10:39:51,206 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess miliseconds- 16
+2008-11-13 10:41:35,078 [main] DEBUG demo.hibernatesearch.service.ResumeManagerTest  - testSeFindResumesWithDocHandler - A Perl PHP developer with 10 years web development experience
+2008-11-13 10:41:35,796 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:41:35,796 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with advanced web services development skills.
+2008-11-13 10:41:35,796 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 10:41:35,796 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java web 2.0 programmer with DWR, ECHO, GWT, AJAX, RSS, ATOM, and RESTful web services development experience.
+2008-11-13 10:41:35,796 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with EJB, SEAM development experience.
+2008-11-13 10:41:35,828 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesForUser miliseconds- 0
+2008-11-13 10:41:35,875 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesForUser miliseconds- 16
+2008-11-13 10:41:36,171 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindMatchCount miliseconds- 281
+2008-11-13 10:41:36,203 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindMatchCount miliseconds- 16
+2008-11-13 10:41:36,234 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesWithPagination - A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 10:41:36,234 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesWithPagination - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:41:36,421 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithPagination - A Java developer with advanced web services development skills.
+2008-11-13 10:41:36,421 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithPagination - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:41:36,453 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.63953674 : A Java web 2.0 programmer with DWR, ECHO, GWT, AJAX, RSS, ATOM, and RESTful web services development experience.
+2008-11-13 10:41:36,453 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.77519435 : A Java developer with advanced web services development skills.
+2008-11-13 10:41:36,453 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.6459953 : A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 10:41:36,453 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.51679623 : A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 10:41:36,453 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess miliseconds- 16
+2008-11-13 11:09:26,688 [main] DEBUG demo.hibernatesearch.service.ResumeManagerTest  - testSeFindResumesWithDocHandler - A Perl PHP developer with 10 years web development experience
+2008-11-13 11:09:27,532 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 11:09:27,532 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with advanced web services development skills.
+2008-11-13 11:09:27,532 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 11:09:27,532 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java web 2.0 programmer with DWR, ECHO, GWT, AJAX, RSS, ATOM, and RESTful web services development experience.
+2008-11-13 11:09:27,532 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with EJB, SEAM development experience.
+2008-11-13 11:09:27,563 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesForUser miliseconds- 15
+2008-11-13 11:09:27,751 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesForUser miliseconds- 157
+2008-11-13 11:09:28,063 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindMatchCount miliseconds- 297
+2008-11-13 11:09:28,094 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindMatchCount miliseconds- 15
+2008-11-13 11:09:28,125 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesWithPagination - A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 11:09:28,125 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesWithPagination - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 11:09:28,172 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithPagination - A Java developer with advanced web services development skills.
+2008-11-13 11:09:28,172 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithPagination - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 11:09:28,188 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.5791477 : A Java web 2.0 programmer with DWR, ECHO, GWT, AJAX, RSS, ATOM, and RESTful web services development experience.
+2008-11-13 11:09:28,188 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.7056698 : A Java developer with advanced web services development skills.
+2008-11-13 11:09:28,188 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.47044656 : A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-11-13 11:09:28,188 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess - 0.58805823 : A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-11-13 11:09:28,188 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumeProjectionsWithoutDatabaseAccess miliseconds- 16

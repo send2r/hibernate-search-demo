@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<%@ taglib uri="/struts-tags" prefix="s"%>
+<%@ taglib uri="/WEB-INF/tld/sitemesh-decorator.tld" prefix="decorator" %>
+<%@page import="java.util.ArrayList"%>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title><decorator:title default="Belga Video"/></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+    <decorator:head/>
+	<link type="text/css" href="<s:url value='/styles/main.css' includeParams='none'/>" rel="stylesheet"/>
+	<link type="text/css" href="<s:url value='/styles/header.css' includeParams='none'/>" rel="stylesheet"/> 
+</head>
+<body>
+<body top-marign=0>
+	<div id="pageContent">
+		<!--Starting header content -->
+		<div id="header">
+			<div id="headerContent">
+			</div>
+		</div>
+		<hr/>
+		<!--End of header -->			
+		<div id="mainContent">
+			 <decorator:body/> 
+		</div>
+	<!--Footer content -->
+	<div id="footer">
+		<div id="footerContent">
+		</div>
+	</div>
+	<!--End of footer -->
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+2008-12-15 14:56:57,965 [main] DEBUG demo.hibernatesearch.service.ResumeManagerTest  - testSeFindResumesWithDocHandler - A Perl PHP developer with 10 years web development experience
+2008-12-15 14:56:58,651 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-12-15 14:56:58,651 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with advanced web services development skills.
+2008-12-15 14:56:58,651 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-12-15 14:56:58,651 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java web 2.0 programmer with DWR, ECHO, GWT, AJAX, RSS, ATOM, and RESTful web services development experience.
+2008-12-15 14:56:58,651 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesWithDocHandler - A Java developer with EJB, SEAM development experience.
+2008-12-15 14:56:58,698 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesForUser miliseconds- 16
+2008-12-15 14:56:58,729 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindResumesForUser miliseconds- 0
+2008-12-15 14:56:59,353 [main] INFO  demo.hibernatesearch.dao.ResumeDaoTest  - ==============4
+2008-12-15 14:56:59,353 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindMatchCount miliseconds- 593
+2008-12-15 14:56:59,446 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesWithPagination - A Java developer with Struts, Webwork, JSF, and Wicket based web application development experience
+2008-12-15 14:56:59,446 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testDbFindResumesWithPagination - A Java architect with web application design experience using, JSF, and Struts technologies.
+2008-12-15 14:56:59,571 [main] INFO  demo.hibernatesearch.dao.ResumeDaoTest  - class demo.hibernatesearch.model.User
+2008-12-15 14:56:59,571 [main] INFO  demo.hibernatesearch.dao.ResumeDaoTest  - class demo.hibernatesearch.model.User
+2008-12-15 14:56:59,571 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindLimitEntity miliseconds- 47
+2008-12-15 14:56:59,602 [main] INFO  demo.hibernatesearch.dao.ResumeDaoTest  - class demo.hibernatesearch.model.Resume
+2008-12-15 14:56:59,602 [main] INFO  demo.hibernatesearch.dao.ResumeDaoTest  - class demo.hibernatesearch.model.User
+2008-12-15 14:56:59,602 [main] INFO  demo.hibernatesearch.dao.ResumeDaoTest  - class demo.hibernatesearch.model.User
+2008-12-15 14:56:59,602 [main] DEBUG demo.hibernatesearch.dao.ResumeDaoTest  - testSeFindLimitEntity miliseconds- 16
