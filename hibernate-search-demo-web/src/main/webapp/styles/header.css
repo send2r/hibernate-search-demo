@@ -1,0 +1,39 @@
+/*Styling for header*/
+div#header {
+	height: 120px;
+	background: url("../images/banner.png") no-repeat left top;
+}
+div#header div#headerContent {
+	margin: auto;
+	position: relative;
+	height: 120px;
+}
+div#header div#headerContent div#titlePage {
+	position: absolute;
+	top: 40px;
+	left: 10px;
+	text-align: right;
+	color: white;
+}
+div#header div#headerContent div#titlePage a {
+    text-decoration: none;
+    color: white;        
+}
+div#header div#headerContent div#logSection ul {
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+    text-align: right;
+    list-style: none;
+}
+div#header div#headerContent div#logSection ul li {
+    float: right;
+}
+div#header div#headerContent div#logSection ul li a {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+div#header div#headerContent div#logSection ul li a:hover {
+    color: #EAEAEA;
+}
