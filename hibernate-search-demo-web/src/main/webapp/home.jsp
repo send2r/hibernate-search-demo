@@ -5,8 +5,10 @@
 
 </head>
 <body>
-home ehheheh
-Web tier is not implemented. <hr/>
-Learn how to integrate different web frameworks through the AppFuse-Light project at java.net.
+	<s:iterator value="#request.listResume" id="resume">
+	<div>
+				<s:property value="summary"/>
+	</div>
+		</s:iterator>
 </body>
 </html>
