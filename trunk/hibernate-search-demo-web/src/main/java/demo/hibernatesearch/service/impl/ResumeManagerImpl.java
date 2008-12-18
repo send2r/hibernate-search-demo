@@ -134,4 +134,11 @@ public class ResumeManagerImpl implements ResumeManager {
 				beginDate, endDate, keywordsInSummary);
 	}
 
+	public List<Resume> getAllResum() {
+		// TODO Auto-generated method stub
+		return resumeDao.getAllResum();
+	}
+	
+	
+
 }
