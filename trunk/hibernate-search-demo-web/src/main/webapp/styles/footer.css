@@ -1,0 +1,4 @@
+body div#footer {
+	height: 80px;
+	background: url("../images/footer.jpg") repeat-x left top;
+}
