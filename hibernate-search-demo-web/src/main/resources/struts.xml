@@ -6,7 +6,8 @@
     <constant name="struts.objectFactory" value="spring" />
     <constant name="struts.devMode" value="true" />
 	<constant name="struts.action.extension" value="htm"/>
-    
+    <constant name="struts.custom.i18n.resources" value="messages" />
+      
     <package name="public" namespace="/" extends="struts-default">
         <action name="home" method="execute" class="demo.hibernatesearch.action.HomeAction">
             <result name="success">home.jsp</result>
