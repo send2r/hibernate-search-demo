@@ -367,14 +367,5 @@ public class ResumeDaoTest {
 		log.debug("testSeFindLimitEntity miliseconds- "
 						+ (t2 - t1));
 	}
-	@Test
-	@Rollback(false)
-	public void testDeleteAll() throws Exception{
-		long t1 = System.currentTimeMillis();
-		List<Resume> list = resumeDao.getAllResum();
-		for(Resume re: list){
-			resumeDao.deleteResume(re);
-		}
-		//log.debug("size: " + list.size());
-	}
+	
 }

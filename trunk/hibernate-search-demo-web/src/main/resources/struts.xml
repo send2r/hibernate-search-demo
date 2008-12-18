@@ -12,6 +12,20 @@
         <action name="home" method="execute" class="demo.hibernatesearch.action.HomeAction">
             <result name="success">home.jsp</result>
         </action>
+        
+        <action name="trungtin" method="execute" class="demo.hibernatesearch.action.TrungTinAction">
+            <result name="success">trungtin.jsp</result>
+        </action>
+
+        <action name="resume-add">  
+       			<result name="none">/resume/error.jsp</result>       			
+       			<result>/resume/resume-add.jsp</result>       			
+		</action>
+		
+		<action name="save-newresume" class="be.pyco.struts.demo.person.NewResumeAction">        			 			
+       			<result name="input">/person/person-add.jsp</result>       			
+       			<result type="redirect-action">list-people</result>       			
+		</action>
 
     </package>
 
