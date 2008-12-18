@@ -48,5 +48,6 @@ public interface ResumeManager {
 
 	public Map<Resume, Float> seFindResumeProjectionsWithoutDatabaseAccess(
 			Date beginDate, Date endDate, String... keywordsInSummary);
-
+	
+	public List<Resume> getAllResum();
 }

@@ -8,8 +8,7 @@
 	<constant name="struts.action.extension" value="htm"/>
     
     <package name="public" namespace="/" extends="struts-default">
-
-        <action name="home" method="execute" class="demo.hibernatesearch.action.PersonAction">
+        <action name="home" method="execute" class="demo.hibernatesearch.action.HomeAction">
             <result name="success">home.jsp</result>
         </action>
 
