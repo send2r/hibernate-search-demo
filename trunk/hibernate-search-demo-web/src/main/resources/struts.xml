@@ -55,6 +55,10 @@
        			<result type="redirect-action">resume-add</result>       			
 		</action>
 
+		<action name="logout" method="execute" class="demo.hibernatesearch.action.LogoutAction">
+            <result name="success"  type="redirect-action">login</result>
+        </action>
+        
     </package>
 
 </struts>

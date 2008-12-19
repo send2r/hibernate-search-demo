@@ -3,25 +3,25 @@
 
 <html>
 <head>
-    <title>Add New Resume</title>     
+    <title>Login</title>     
 </head>
 
 <body>  
-<div id="content"> 		
-
-	<s:form action="check-login" validate="true" id="addNewPeople">
-		<tr align="center">
-			<td colspan="4">
-				<SPAN style="font-weight: bold; font-size: 15px;"><s:text name="login.title"/></SPAN>
-			</td>	
-		</tr>
-	    <s:textfield name="email" key="login.email" />
-	    <tr>
-			<td colspan="2" align="right">
-				<input type="submit" value="<s:text name="button.login"/>"/>
-			</td>
-		</tr>
-	</s:form>
-</div>
+	<div class="Login"> 		
+		<s:form action="check-login" theme="simple">
+			<div class="LoginBox">
+				<div class="Header">
+					<s:text name="login.title"></s:text>
+				</div>
+				<div class="Content">
+					<span><s:text name="login.email"></s:text>:</span>
+					<span><s:textfield name="email" key="login.email" /></span>
+				</div>
+				<div class="Footer">
+					<input type="submit" value="<s:text name="button.login"/>"/>
+				</div>
+			</div>
+		</s:form>
+	</div>
 </body>
 </html>
