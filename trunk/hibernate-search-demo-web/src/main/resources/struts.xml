@@ -13,6 +13,16 @@
             <result name="success">home.jsp</result>
         </action>
         
+        <action name="login">
+       			<result name="none">/resume/error.jsp</result>       			
+       			<result>/login.jsp</result>       			
+		</action>
+		
+		<action name="check-login" method="validateUser" class="demo.hibernatesearch.action.LoginAction">        			 			
+       			<result name="none" type="redirect-action">login</result>       			
+       			<result name="success" type="redirect-action">home</result>       			
+		</action>
+		
         <action name="resume-add">  
        			<result name="none">/resume/error.jsp</result>       			
        			<result>/resume/resume-add.jsp</result>       			

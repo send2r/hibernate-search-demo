@@ -50,4 +50,6 @@ public interface ResumeManager {
 			Date beginDate, Date endDate, String... keywordsInSummary);
 	
 	public List<Resume> getAllResum();
+	
+	public User getUserByEmail(String emailAddress);
 }
