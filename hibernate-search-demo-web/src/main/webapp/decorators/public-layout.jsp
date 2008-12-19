@@ -18,6 +18,7 @@
 		<!--Starting header content -->
 		<div id="header">
 			<div id="headerContent">
+				<a href="<s:url value='/logout.htm' includeParams='none'/>">Logout</a>
 			</div>
 		</div>
 		<hr/>

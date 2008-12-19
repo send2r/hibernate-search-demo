@@ -29,7 +29,33 @@ body #search {
 	margin: 5px;
 	text-align: right;
 }
-body #search form{
+body form{
 	margin: 0;
 	padding: 0;
+}
+
+div.Login{
+	margin: 0 auto;
+	width: 250px;
+	color: white;
+	font-weight: bold;
+	
+}
+div.Login div.LoginBox{
+	margin: 50px 0px;
+	border: 1px solid #66CCFF;
+}
+
+div.Login div.Header {
+	height: 21px;
+	background: url("../images/table-header.jpg") repeat-x left top;
+}
+
+div.Login div.LoginBox div.Content input{
+	margin: 2 2;
+	border: 1px solid #cccccc;
+}
+div.Login div.Footer {
+	text-align:right;
+	border-top: 1px solid #66CCFF;
 }
