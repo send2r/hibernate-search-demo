@@ -4,6 +4,7 @@ import demo.hibernatesearch.dao.ResumeDao;
 import demo.hibernatesearch.model.Resume;
 import demo.hibernatesearch.model.User;
 import demo.hibernatesearch.service.ResumeManager;
+import demo.hibernatesearch.util.IList;
 
 import java.util.Date;
 import java.util.List;
@@ -133,10 +134,10 @@ public class ResumeManagerImpl implements ResumeManager {
 		return resumeDao.seFindResumeProjectionsWithoutDatabaseAccess(
 				beginDate, endDate, keywordsInSummary);
 	}
-
-	public List<Resume> getAllResum() {
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IList<Resume> getAllResum(final int pageIndex, final int pageSize){
 		// TODO Auto-generated method stub
-		return resumeDao.getAllResum();
+		return resumeDao.getAllResum(pageIndex, pageSize);
 	}
 	
 	public User getUserByEmail(String emailAddress) {

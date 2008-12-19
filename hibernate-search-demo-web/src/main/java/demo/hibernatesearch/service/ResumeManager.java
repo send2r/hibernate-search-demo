@@ -2,6 +2,7 @@ package demo.hibernatesearch.service;
 
 import demo.hibernatesearch.model.Resume;
 import demo.hibernatesearch.model.User;
+import demo.hibernatesearch.util.IList;
 
 import java.util.Date;
 import java.util.List;
@@ -49,7 +50,7 @@ public interface ResumeManager {
 	public Map<Resume, Float> seFindResumeProjectionsWithoutDatabaseAccess(
 			Date beginDate, Date endDate, String... keywordsInSummary);
 	
-	public List<Resume> getAllResum();
+	IList<Resume> getAllResum(final int pageIndex, final int pageSize);
 	
 	public User getUserByEmail(String emailAddress);
 }

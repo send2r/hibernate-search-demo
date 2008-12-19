@@ -1,11 +1,12 @@
 package demo.hibernatesearch.dao;
 
-import demo.hibernatesearch.model.Resume;
-import demo.hibernatesearch.model.User;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import demo.hibernatesearch.model.Resume;
+import demo.hibernatesearch.model.User;
+import demo.hibernatesearch.util.IList;
 
 public interface ResumeDao {
 
@@ -51,7 +52,7 @@ public interface ResumeDao {
 	
 	public Object getEntityLimit(Class...limit);
 	public Object seFetchStrategy() ;
-	public List<Resume> getAllResum();
+	public IList<Resume> getAllResum(int pageIndex, int pageSize);
 	
 	public User getUserByEmail(String emailAddress);
 }
