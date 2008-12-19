@@ -451,5 +451,16 @@ public class ResumeDaoHibernate implements ResumeDao {
 		});
 		return (List<Resume>) results;
 	}
+	
+	public User getUserByEmail(String emailAddress) {
+		
+		List<User> list = null;
+		User result = null;
+		list = (List<User>)getJpaTemplate().find("from User user where user.emailAddress='"	+ emailAddress + "'");
+		if (list != null && list.size() != 0) {
+			result = list.get(0);
+		}
+		return result;		
+	}
 
 }

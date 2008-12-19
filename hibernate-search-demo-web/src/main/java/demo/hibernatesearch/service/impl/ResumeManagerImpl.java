@@ -139,6 +139,11 @@ public class ResumeManagerImpl implements ResumeManager {
 		return resumeDao.getAllResum();
 	}
 	
+	public User getUserByEmail(String emailAddress) {
+		
+		return resumeDao.getUserByEmail(emailAddress);
+	}
+	
 	
 
 }
