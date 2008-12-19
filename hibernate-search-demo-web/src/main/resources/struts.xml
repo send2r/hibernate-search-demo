@@ -9,18 +9,40 @@
     <constant name="struts.custom.i18n.resources" value="messages" />
       
     <package name="public" namespace="/" extends="struts-default">
+        <interceptors>
+	        <interceptor
+	            name="exception"
+	            class="com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor"/>
+	        <interceptor name="userAuthentication"
+						 class="demo.hibernatesearch.interceptor.UserAuthentication" />
+						 
+	        <interceptor-stack name="hibernateDemoIntercep">
+	            <interceptor-ref name="exception" />
+	            <interceptor-ref name="defaultStack" />
+	            <interceptor-ref name="userAuthentication" />
+	        </interceptor-stack>
+	    </interceptors>
+	    
+	    <default-interceptor-ref name="hibernateDemoIntercep" />
+	    
+	    <global-results>
+			<result name="login" type="redirect-action">login</result>
+		</global-results>
+		
         <action name="home" method="execute" class="demo.hibernatesearch.action.HomeAction">
             <result name="success">home.jsp</result>
         </action>
         
         <action name="login">
-       			<result name="none">/resume/error.jsp</result>       			
-       			<result>/login.jsp</result>       			
+       		<interceptor-ref name="defaultStack" />
+			<result name="none">/resume/error.jsp</result>
+			<result>/login.jsp</result>       			
 		</action>
 		
-		<action name="check-login" method="validateUser" class="demo.hibernatesearch.action.LoginAction">        			 			
-       			<result name="none" type="redirect-action">login</result>       			
-       			<result name="success" type="redirect-action">home</result>       			
+		<action name="check-login" method="validateUser" class="demo.hibernatesearch.action.LoginAction">   
+			<interceptor-ref name="defaultStack" />     			 			
+      		<result name="none" type="redirect-action">login</result>       			
+      		<result name="success" type="redirect-action">home</result>       			
 		</action>
 		
         <action name="resume-add">  
