@@ -1,5 +1,6 @@
 package demo.hibernatesearch.action;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -15,13 +16,11 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 
 import demo.hibernatesearch.model.Resume;
+import demo.hibernatesearch.model.User;
 import demo.hibernatesearch.service.ResumeManager;
 
 public class NewResumeAction extends ActionSupport {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4954716886990860703L;
 
 	@Autowired
@@ -41,8 +40,17 @@ public class NewResumeAction extends ActionSupport {
 		System.out.println("You clicked Save buttion");
 		System.out.println(summary);
 		System.out.println(content);
+		Resume resume = new Resume();
+		resume.setSummary(summary);
+		resume.setContent(content.getBytes());
+		resume.setLastUpdated(new Date());
+		User user = resumeManager.getApplicant(new Long(1));
+		resume.setApplicant(user);
+		resumeManager.saveResume(resume);
 		return Action.SUCCESS;
 	}
+	
+	
 
 	public void prepare() throws Exception {
 		// TODO Auto-generated method stub
