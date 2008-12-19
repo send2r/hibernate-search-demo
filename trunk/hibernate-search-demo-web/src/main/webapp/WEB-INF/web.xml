@@ -60,7 +60,11 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
+	<servlet>
+        <servlet-name>app-init</servlet-name>
+        <servlet-class>demo.hibernatesearch.application.ApplicationInit</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

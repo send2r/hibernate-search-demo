@@ -16,18 +16,6 @@ hr {
 p {
 	margin:2px 2px;
 }
-a {
-	color: white;
-}
-a:visited {
-    color: #CCCCCC;
-}
-a:hover {
-	color: white;
-}
-a:active {
-    color: red;
-}
 
 body #pageContent {
 	width: 800px;
@@ -35,4 +23,13 @@ body #pageContent {
 }
 body #mainContent{
 	border: 1px solid #66CCFF;
+}
+
+body #search {
+	margin: 5px;
+	text-align: right;
+}
+body #search form{
+	margin: 0;
+	padding: 0;
 }

@@ -1,0 +1,22 @@
+.Pager {
+	margin: 5px;
+    text-align: right;
+}
+.Pager input {
+    border: 1px solid #aaaaaa;
+    width: 17px;
+    height: 15px;
+    text-align: center;
+}
+.Pager a {
+    border: 1px solid #aaaaaa;
+    color: #6699ff;
+    padding: 0em .5em;
+    text-decoration: none;
+}
+.Pager a.PagerDisable {
+    color: #cccccc;
+    border: 1px solid #dedede;
+    background-color: #efefef;
+
+}
