@@ -52,4 +52,6 @@ public interface ResumeDao {
 	public Object getEntityLimit(Class...limit);
 	public Object seFetchStrategy() ;
 	public List<Resume> getAllResum();
+	
+	public User getUserByEmail(String emailAddress);
 }
