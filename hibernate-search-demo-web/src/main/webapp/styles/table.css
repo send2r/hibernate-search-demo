@@ -1,0 +1,121 @@
+.ItemList .ItemAction {
+	width: 3%;
+	padding: 0 5px;
+	text-align: center;
+}
+table.ItemList .Image {
+    text-align: center;
+}
+.ItemList img {
+	padding: 2px;
+}
+
+table.ItemList {
+    width: 100%;
+	border-collapse: collapse;
+    margin-bottom: 1ex;
+   	border: 1px solid ;
+}
+table.ItemList th.SpecialisedTitle{
+    text-align: left;
+}
+table.ItemList th {
+	background: #b7e7fb url("../images/table-header.jpg") repeat-x top;
+	border-left: 1px solid;
+	border-bottom: 1px solid;
+	padding: .2em .4em;
+}
+
+table.ItemList td {
+	border-right: 1px solid;
+	border-bottom: 1px solid;
+    padding: .3em;
+}
+
+table.ItemList .Action {
+    text-align: center;
+}
+
+table.ItemList .LeftAlign {
+    text-align: left;
+    padding-left: 3px;
+}
+table.ItemList,
+table.ItemList th,
+table.ItemList td {
+    border-color: #C4D2DF;
+}
+
+table.ItemList td.Type {
+	width: 5%;
+    text-align: center;
+}
+
+table.ItemList td.DeleteAction {
+	width: 3%;
+	margin-right: 0px;
+	padding:0 5px;
+	color: #FF9900;
+}
+table.ItemList td.ItemCode {
+    text-align: center;
+}
+table.ItemList td.Action {
+	text-align: center;
+}
+table.ItemList td.Action a {
+	width: 33px;
+	height: 33px;
+	float: left;
+}
+table.ItemList a div.DeleteButton {
+	background: url("../images/delete.png") no-repeat center;
+	width: 33px;
+	height: 33px;
+	margin: auto;
+	cursor: pointer;
+}
+table.ItemList a:hover div.DeleteButton {
+	background-image: url("../images/delete_hover.png");
+}
+table.ItemList a div.EditButton {
+	background: url("../images/edit.png") no-repeat center;
+	width: 33px;
+	height: 33px;
+	margin: auto;
+	cursor: pointer;
+}
+table.ItemList a:hover div.EditButton {
+	background-image: url("../images/edit_hover.png");
+}
+table.ItemList img {
+    border: none;
+}
+
+table.ItemList th.Id {
+	width: 30px;
+}
+table.ItemList th.UserName {
+	width: 130px;
+}
+table.ItemList th.Email {
+	width: 150px;
+}
+table.ItemList th.Summary {
+	width: 250px;
+}
+table.ItemList th.CreatedDate {
+	width: 100px;
+}
+
+table.ItemList td.Id {
+	text-align: center;
+}
+
+table.ItemList td.CreatedDate {
+	text-align: center;
+}
+table.ItemList td.Summary div{
+	width: 250px;
+	overflow: hidden;
+}
