@@ -19,6 +19,7 @@ import org.apache.lucene.index.Term;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.TermQuery;
+import org.apache.lucene.search.WildcardQuery;
 import org.hibernate.CacheMode;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
@@ -46,6 +47,8 @@ import org.springframework.transaction.annotation.Transactional;
 import demo.hibernatesearch.dao.ResumeDao;
 import demo.hibernatesearch.model.Resume;
 import demo.hibernatesearch.model.User;
+import demo.hibernatesearch.util.IList;
+import demo.hibernatesearch.util.ListImpl;
 
 /**
  * Declare POJO Spring Component DAO
@@ -443,13 +446,21 @@ public class ResumeDaoHibernate implements ResumeDao {
 		return results;
 	}
 	
-	public List<Resume> getAllResum(){
+	public IList<Resume> getAllResum(final int pageIndex, final int pageSize){
 		Object results = getJpaTemplate().execute(new JpaCallback() {
 			public Object doInJpa(EntityManager em) throws PersistenceException {
-				return (List<Resume>) em.createQuery("from Resume").getResultList();
+				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
+				FullTextQuery fq = fullTextEntityManager.createFullTextQuery(
+						new WildcardQuery(new Term("resume","*")), Resume.class);
+				fq.setFirstResult(pageIndex).setMaxResults(pageSize);
+				
+				IList pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
+				pageList.setList(fq.getResultList());
+				return pageList; 
+				//(List<Resume>) em.createQuery("from Resume").setFirstResult(pageIndex).setMaxResults(pageSize);
 			}
 		});
-		return (List<Resume>) results;
+		return (IList<Resume>) results;
 	}
 	
 	public User getUserByEmail(String emailAddress) {

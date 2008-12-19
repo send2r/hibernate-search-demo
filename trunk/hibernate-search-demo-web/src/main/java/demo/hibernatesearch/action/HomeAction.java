@@ -13,18 +13,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.Preparable;
 
+import demo.hibernatesearch.application.Constants;
 import demo.hibernatesearch.model.Resume;
 import demo.hibernatesearch.service.ResumeManager;
-
+import demo.hibernatesearch.taglib.pager.PagerModel;
+import demo.hibernatesearch.util.IList;
 
 public class HomeAction implements Preparable, SessionAware, RequestAware {
-    
+
 	@Autowired
 	private ResumeManager resumeManager;
 	private Map session;
 	private Map request;
+	private String page;
 
-    public ResumeManager getResumeManager() {
+	public String getPage() {
+		return page;
+	}
+
+	public void setPage(String page) {
+		this.page = page;
+	}
+
+	public Map getSession() {
+		return session;
+	}
+
+	public Map getRequest() {
+		return request;
+	}
+
+	public ResumeManager getResumeManager() {
 		return resumeManager;
 	}
 
@@ -33,25 +52,41 @@ public class HomeAction implements Preparable, SessionAware, RequestAware {
 	}
 
 	public String execute() throws Exception {
-	   List<Resume> listResume = resumeManager.getAllResum();
-	   ServletActionContext.getRequest().setAttribute("listResume", listResume);
-       return Action.SUCCESS;
-    }
+		
+		int pageIndex;
+		try{
+			pageIndex = Integer.valueOf(this.page);
+		}catch(Exception e){
+			pageIndex = 0;
+		}
+		
+		IList<Resume> listResume = resumeManager.getAllResum(pageIndex > 0
+						? pageIndex - 1
+						: pageIndex, Constants.PAGE_SIZE);
+		request.put("listResume", listResume);
+		PagerModel pagerModel = (PagerModel)ServletActionContext.getServletContext().getAttribute(Constants.PAGER_MODEL);
+		pagerModel.setPageSize(Constants.PAGE_SIZE);
+		pagerModel.setBaseLink("home.htm");
+		pagerModel.setPageIndex(pageIndex);
+		pagerModel.setTotalItems(listResume.getTotalItemCount());
+		request.put("listResume", listResume);
+		request.put("pager", pagerModel);
+		return Action.SUCCESS;
+	}
 
 	public void prepare() throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void setSession(Map session) {
 		this.session = session;
-		
+
 	}
 
 	public void setRequest(Map request) {
 		this.request = request;
-		
+
 	}
 
-    
 }
