@@ -54,7 +54,15 @@
        			<result name="input">/resume/resume-add.jsp</result>       			
        			<result type="redirect-action">resume-add</result>       			
 		</action>
-
+		
+		<action name="simple-search" class="demo.hibernatesearch.action.SimpleSearchAction">        			 			
+       			<result name="success">/home.jsp</result>       			
+		</action>
+	
+		<action name="advanced-search" class="demo.hibernatesearch.action.AdvanceSearchAction">        			 			
+       			<result name="success">/home.jsp</result>       			
+		</action>
+		
 		<action name="logout" method="execute" class="demo.hibernatesearch.action.LogoutAction">
             <result name="success"  type="redirect-action">login</result>
         </action>

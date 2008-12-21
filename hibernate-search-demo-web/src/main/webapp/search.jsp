@@ -13,12 +13,11 @@
 <body>
 
 <div id="search">
-	<form action="simple-search.htm">
-		<s:textfield name="query"></s:textfield>
+	<form action="simple-search">
+		<s:textfield name="searchText"></s:textfield>
 		<input value="Search" type="submit"/>
 	</form>
 </div>
-<s:form name="home" action="resume-add.htm" theme="simple">
 <table class="ItemList">
 	<tr>
 		<th class="Id"><s:text name="home.table.id" /></th>
@@ -26,27 +25,17 @@
 		<th class="Email"><s:text name="home.table.email" /></th>
 		<th class="Summary"><s:text name="home.table.summary" /></th>
 		<th class="CreatedDate"><s:text name="home.table.creation-date" /></th>
-		<th class="Delete"><input type="checkbox" onclick="checkAll(this, document.home.listDelete);"/></th>
 	</tr>
 	<s:iterator value="#request.listResume" id="resume">
 		<tr>
 			<td class="Id"><s:property value="id" /></td>
 			<td class="UserName"><s:property value="applicant.fullName" /></td>
 			<td class="Email"><s:property value="applicant.emailAddress" /></td>
-			
-			<td class="Summary"><div><a href="<s:url action="edit-resume.htm" />"><s:property value="summary" /></a></div></td>
+			<td class="Summary"><div><s:property value="summary" /></div></td>
 			<td class="CreatedDate"><s:property value="lastUpdated" /></td>
-			<td class="Delete"><input type="checkbox" value="<s:property value="id"/>" name="listDelete"/></td>
 		</tr>
 	</s:iterator>
-	<tr>
-		<td colspan="6" class="Function">
-			<input type="submit" value="AddResume"/>
-			<input type="button" value="Delete"/>
-		</td>
-	</tr>
 </table>
-</s:form>
 <belga:pager id="pager" cssClass="Pager" dataModel="pager"
 	templateConfig="templateConfig" templateName="pager.ftl" />
 </body>

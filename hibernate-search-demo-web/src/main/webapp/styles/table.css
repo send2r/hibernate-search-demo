@@ -104,6 +104,9 @@ table.ItemList th.Email {
 table.ItemList th.Summary {
 	width: 250px;
 }
+table.ItemList th.Delete {
+	width: 50px;
+}
 table.ItemList th.CreatedDate {
 	width: 100px;
 }
@@ -115,7 +118,19 @@ table.ItemList td.Id {
 table.ItemList td.CreatedDate {
 	text-align: center;
 }
+table.ItemList td.Delete {
+	text-align: center;
+}
 table.ItemList td.Summary div{
 	width: 250px;
 	overflow: hidden;
+}
+table.ItemList td.Summary a{
+	text-decoration: none;
+}
+table.ItemList td.Summary a:hover{
+	text-decoration: underline;
+}
+table.ItemList td.Function {
+	text-align: right;
 }

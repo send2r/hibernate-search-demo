@@ -11,14 +11,16 @@
 	<link type="text/css" href="<s:url value='/styles/main.css' includeParams='none'/>" rel="stylesheet"/>
 	<link type="text/css" href="<s:url value='/styles/header.css' includeParams='none'/>" rel="stylesheet"/> 
 	<link type="text/css" href="<s:url value='/styles/footer.css' includeParams='none'/>" rel="stylesheet"/>
+	<script type="text/javascript" src="<s:url value='/scripts/main.js' includeParams='none'/>"></script>
 </head>
-<body>
-<body top-marign=0>
+<body top-marign="0">
 	<div id="pageContent">
 		<!--Starting header content -->
 		<div id="header">
 			<div id="headerContent">
-				<a href="<s:url value='/logout.htm' includeParams='none'/>">Logout</a>
+				<s:if test="#session.currentUser != null">
+					<a href="<s:url value='/logout.htm' includeParams='none'/>">Logout</a>
+				</s:if>
 			</div>
 		</div>
 		<hr/>
@@ -33,6 +35,5 @@
 	</div>
 	<!--End of footer -->
 	</div>
-</div>
 </body>
 </html>
