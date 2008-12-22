@@ -29,6 +29,8 @@ public interface ResumeManager {
 	public List<Resume> dbFindResumesForUser(String emailAddress);
 
 	public List<Resume> seFindResumesForUser(String emailAddress);
+	
+	public IList<Resume> seFindResumesForUserWithPagination(final String emailAddress, final int pageIndex, final int pageSize);
 
 	public int dbFindMatchCount(Date beginDate, Date endDate,
 			String... keywordsInSummary);

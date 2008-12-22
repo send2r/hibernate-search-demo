@@ -86,7 +86,10 @@ public class ResumeManagerImpl implements ResumeManager {
 	public List<Resume> seFindResumesForUser(String emailAddress) {
 		return resumeDao.seFindResumesForUser(emailAddress);
 	}
-
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IList<Resume> seFindResumesForUserWithPagination(final String emailAddress, final int pageIndex, final int pageSize){
+		return resumeDao.seFindResumesForUserWithPagination(emailAddress, pageIndex, pageSize);
+	}
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int dbFindMatchCount(Date beginDate, Date endDate,
 			String... keywordsInSummary) {

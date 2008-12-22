@@ -27,7 +27,8 @@ public class WordDocHandlerBridge implements StringBridge {
 				_result.append(" ");
 			}
 		} catch (IOException ex) {
-			ex.printStackTrace();
+			//ex.printStackTrace();
+			return new String((byte[])arg0);
 		}
 		return _result.toString();
 	}
