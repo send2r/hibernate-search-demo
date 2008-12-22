@@ -165,6 +165,33 @@ public class ResumeDaoHibernate implements ResumeDao {
 		});
 		return (List<Resume>) results;
 	}
+	
+	/**
+	 * Index search followed by JPA query
+	 * 
+	 * getJpaTemplate().getEntityManager() appears returning null
+	 */
+	@SuppressWarnings("unchecked")
+	public IList<Resume> seFindResumesForUserWithPagination(final String emailAddress, final int pageIndex, final int pageSize) {
+		Object results = getJpaTemplate().execute(new JpaCallback() {
+			public Object doInJpa(EntityManager em) throws PersistenceException {
+
+				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
+
+				TermQuery tq = new TermQuery(new Term("applicant.emailAddress",
+						emailAddress));
+
+				FullTextQuery fq = fullTextEntityManager.createFullTextQuery(
+						tq, Resume.class);
+				fq.setFirstResult(pageIndex).setMaxResults(pageSize);
+				
+				IList<Resume> results = new ListImpl(fq.getResultList(), fq.getResultSize(), pageIndex, pageSize);
+				
+				return results;
+			}
+		});
+		return (IList<Resume>) results;
+	}
 
 	/**
 	 * JPA query, no index search

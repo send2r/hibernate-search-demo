@@ -30,6 +30,7 @@
 		</global-results>
 		
         <action name="home" method="execute" class="demo.hibernatesearch.action.HomeAction">
+        	<interceptor-ref name="defaultStack" />
             <result name="success">home.jsp</result>
         </action>
         
@@ -64,7 +65,7 @@
 		</action>
 		
 		<action name="logout" method="execute" class="demo.hibernatesearch.action.LogoutAction">
-            <result name="success"  type="redirect-action">login</result>
+            <result name="success"  type="redirect-action">home</result>
         </action>
         
     </package>

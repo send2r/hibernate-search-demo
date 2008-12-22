@@ -15,19 +15,21 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
 
+import demo.hibernatesearch.application.Constants;
 import demo.hibernatesearch.model.Resume;
 import demo.hibernatesearch.model.User;
 import demo.hibernatesearch.service.ResumeManager;
 
-public class NewResumeAction extends ActionSupport {
+public class NewResumeAction extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = -4954716886990860703L;
 
 	@Autowired
 	private ResumeManager resumeManager;
-
+	private Map session;
 	private String summary;
 	private String content;
+	
 
 	public String sayHello() throws Exception {
 
@@ -37,14 +39,13 @@ public class NewResumeAction extends ActionSupport {
 
 	public String execute() throws Exception {
 
-		System.out.println("You clicked Save buttion");
 		System.out.println(summary);
 		System.out.println(content);
 		Resume resume = new Resume();
 		resume.setSummary(summary);
 		resume.setContent(content.getBytes());
 		resume.setLastUpdated(new Date());
-		User user = resumeManager.getApplicant(new Long(1));
+		User user = (User)session.get(Constants.CURRENT_USER);
 		resume.setApplicant(user);
 		resumeManager.saveResume(resume);
 		return Action.SUCCESS;
@@ -79,6 +80,11 @@ public class NewResumeAction extends ActionSupport {
 
 	public void setResumeManager(ResumeManager resumeManager) {
 		this.resumeManager = resumeManager;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+		
 	}
 
 }

@@ -1,9 +1,6 @@
 package demo.hibernatesearch.action;
 
-import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
@@ -15,6 +12,7 @@ import com.opensymphony.xwork2.Preparable;
 
 import demo.hibernatesearch.application.Constants;
 import demo.hibernatesearch.model.Resume;
+import demo.hibernatesearch.model.User;
 import demo.hibernatesearch.service.ResumeManager;
 import demo.hibernatesearch.taglib.pager.PagerModel;
 import demo.hibernatesearch.util.IList;
@@ -59,10 +57,19 @@ public class HomeAction implements Preparable, SessionAware, RequestAware {
 		}catch(Exception e){
 			pageIndex = 0;
 		}
+		User currentUser = (User)session.get(Constants.CURRENT_USER);
+		IList<Resume> listResume = null;
+		if(currentUser == null){
 		
-		IList<Resume> listResume = resumeManager.getAllResum(pageIndex > 0
+			listResume = resumeManager.getAllResum(pageIndex > 0
 						? pageIndex - 1
 						: pageIndex, Constants.PAGE_SIZE);
+		} else {
+			listResume = resumeManager.seFindResumesForUserWithPagination(currentUser.getEmailAddress(),pageIndex > 0
+					? pageIndex - 1
+							: pageIndex, Constants.PAGE_SIZE);
+		}
+		
 		request.put("listResume", listResume);
 		PagerModel pagerModel = (PagerModel)ServletActionContext.getServletContext().getAttribute(Constants.PAGER_MODEL);
 		pagerModel.setPageSize(Constants.PAGE_SIZE);

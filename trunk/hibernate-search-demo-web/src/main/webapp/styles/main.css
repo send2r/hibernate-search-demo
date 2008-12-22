@@ -80,6 +80,7 @@ div.AddNew{
 div.AddNew div.AddNewBox{
 	margin: 50px 0px;
 	border: 1px solid #66CCFF;
+	overflow: hidden;
 }
 
 div.AddNew div.Header {
@@ -90,4 +91,25 @@ div.AddNew div.Header {
 div.AddNew div.AddNewBox div.Content{
 	color: black;
 	margin: 5px 5px;
+}
+div.AddNew div.AddNewBox div.Content div{
+	clear: both;
+}
+div.AddNew div.AddNewBox div.Content span.Text{
+	display: block;
+	margin: 5px 5px;
+	float: left;
+}
+div.AddNew div.AddNewBox div.Content span.Input{
+	display: block;
+	margin: 0px 5px;
+	float: right;
+}
+div.AddNew div.AddNewBox div.Content span.Input textarea {
+	border: 1px solid #cccccc;
+}
+div.AddNew div.Footer {
+	padding: 5px 5px;
+	text-align:right;
+	float: right;
 }

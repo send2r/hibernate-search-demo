@@ -21,6 +21,9 @@
 				<s:if test="#session.currentUser != null">
 					<a href="<s:url value='/logout.htm' includeParams='none'/>">Logout</a>
 				</s:if>
+				<s:else>
+					<a href="<s:url value='/login.htm' includeParams='none'/>">Login</a>
+				</s:else>
 			</div>
 		</div>
 		<hr/>

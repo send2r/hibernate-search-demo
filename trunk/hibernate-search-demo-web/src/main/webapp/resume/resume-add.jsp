@@ -34,21 +34,24 @@
 					<s:text name="resume.title"></s:text>
 				</div>
 				<div class="Content">
-					<span>
-						<s:property value="resume.summary"/>
-					</span>
-					<span>
-						<s:textarea cols="50" rows="3" name="summary" key="resume.summary" />
-					</span>
+					<div>
+						<span class="Text">
+							<s:text name="resume.summary"/>
+						</span>
+						<span class="Input">
+							<s:textarea cols="50" rows="3" name="summary" key="resume.summary" />
+						</span>
+					</div>
+					<div>
+						<span class="Text">
+							<s:text name="resume.content"/>
+						</span>
+						<span class="Input">
+							<s:textarea cols="50" rows="5" name="content" key="resume.content"/>
+						</span>
 				</div>
-				<div>
-					<span>
-						<s:property value="resume.content"/>
-					</span>
-					<span>
-						<s:textarea cols="50" rows="5" name="content" key="resume.content"/>
-					</span>
 				</div>
+				
 				<div class="Footer">
 					<a href="home.htm"><s:text name="link.home"/></a>
 					<input type="submit" value="<s:text name="button.save"/>"/>

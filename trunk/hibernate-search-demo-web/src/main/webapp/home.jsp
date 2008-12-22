@@ -26,7 +26,9 @@
 		<th class="Email"><s:text name="home.table.email" /></th>
 		<th class="Summary"><s:text name="home.table.summary" /></th>
 		<th class="CreatedDate"><s:text name="home.table.creation-date" /></th>
-		<th class="Delete"><input type="checkbox" onclick="checkAll(this, document.home.listDelete);"/></th>
+		<s:if test="#session.currentUser != null">
+			<th class="Delete"><input type="checkbox" onclick="checkAll(this, document.home.listDelete);"/></th>
+		</s:if>
 	</tr>
 	<s:iterator value="#request.listResume" id="resume">
 		<tr>
@@ -36,15 +38,19 @@
 			
 			<td class="Summary"><div><a href="<s:url action="edit-resume.htm" />"><s:property value="summary" /></a></div></td>
 			<td class="CreatedDate"><s:property value="lastUpdated" /></td>
-			<td class="Delete"><input type="checkbox" value="<s:property value="id"/>" name="listDelete"/></td>
+			<s:if test="#session.currentUser != null">
+				<td class="Delete"><input type="checkbox" value="<s:property value="id"/>" name="listDelete"/></td>
+			</s:if>
 		</tr>
 	</s:iterator>
-	<tr>
-		<td colspan="6" class="Function">
-			<input type="submit" value="AddResume"/>
-			<input type="button" value="Delete"/>
-		</td>
-	</tr>
+	<s:if test="#session.currentUser != null">
+		<tr>
+			<td colspan="6" class="Function">
+				<input type="submit" value="AddResume"/>
+				<input type="button" value="Delete"/>
+			</td>
+		</tr>
+	</s:if>
 </table>
 </s:form>
 <belga:pager id="pager" cssClass="Pager" dataModel="pager"
