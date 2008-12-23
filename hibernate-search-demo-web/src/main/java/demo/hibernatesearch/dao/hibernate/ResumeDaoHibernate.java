@@ -482,13 +482,12 @@ public class ResumeDaoHibernate implements ResumeDao {
 			public Object doInJpa(EntityManager em) throws PersistenceException {
 				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
 				FullTextQuery fq = fullTextEntityManager.createFullTextQuery(
-						new WildcardQuery(new Term("resume","*")), Resume.class);
+						new WildcardQuery(new Term("content","*")), Resume.class);
 				fq.setFirstResult(pageIndex*pageSize).setMaxResults(pageSize);
 				
 				IList pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
 				pageList.setList(fq.getResultList());
-				return pageList; 
-				//(List<Resume>) em.createQuery("from Resume").setFirstResult(pageIndex).setMaxResults(pageSize);
+				return pageList;
 			}
 		});
 		return (IList<Resume>) results;
