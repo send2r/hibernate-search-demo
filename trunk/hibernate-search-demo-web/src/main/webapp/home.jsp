@@ -14,7 +14,7 @@
 
 <div id="search">
 	<form action="simple-search.htm">
-		<s:textfield name="query"></s:textfield>
+		<s:textfield name="searchString"></s:textfield>
 		<input value="Search" type="submit"/>
 	</form>
 </div>
