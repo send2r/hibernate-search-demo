@@ -480,11 +480,12 @@ public class ResumeDaoHibernate implements ResumeDao {
 	}
 	
 	public IList<Resume> getAllResum(final int pageIndex, final int pageSize) {
+		
 		Object results = getJpaTemplate().execute(new JpaCallback() {
 			public Object doInJpa(EntityManager em) throws PersistenceException {
 				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
-				FullTextQuery fq = fullTextEntityManager.createFullTextQuery(
-						new WildcardQuery(new Term("content","*")), Resume.class);
+				FullTextQuery fq = fullTextEntityManager.createFullTextQuery (
+						new WildcardQuery(new Term("id","*")), Resume.class);
 				fq.setFirstResult(pageIndex*pageSize).setMaxResults(pageSize);
 				
 				IList pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
@@ -513,12 +514,57 @@ public class ResumeDaoHibernate implements ResumeDao {
 				
 				IList pageList = null;
 				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
-				MultiFieldQueryParser parser = new MultiFieldQueryParser(new String[]{"summary", "content"}, new StandardAnalyzer()); 
+							
+				try {
+					org.apache.lucene.search.Query query;
+					if ("".equals(searchString) || "*".equals(searchString)) {
+						query = new WildcardQuery(new Term("id","*"));
+					} else {
+						MultiFieldQueryParser parser = new MultiFieldQueryParser(new String[]{"summary", "content"}, new StandardAnalyzer());
+						query = parser.parse(searchString);
+					}
+					FullTextQuery fq = fullTextEntityManager.createFullTextQuery(query, Resume.class);
+					fq.setFirstResult(pageIndex*pageSize).setMaxResults(pageSize);
+					pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
+					pageList.setList(fq.getResultList());
+					
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if (pageList == null) {
+					pageList = new ListImpl();
+				}
+				return pageList;
+			}
+		});
+		return (IList<Resume>) results;
+	}
+	
+	public IList<Resume> simpleSearchWithEmail(final String email, final int pageIndex, final int pageSize,final String searchString) {
+		
+		Object results = getJpaTemplate().execute(new JpaCallback() {
+			public Object doInJpa(EntityManager em) throws PersistenceException {
+				
+				IList pageList = null;
+				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
+				 
 				
 				try {
 					
-					org.apache.lucene.search.Query query = parser.parse(searchString);
-					FullTextQuery fq = fullTextEntityManager.createFullTextQuery(query, Resume.class);
+					org.apache.lucene.search.Query query01;
+					if ("".equals(searchString.trim()) || "*".equals(searchString)) {
+						query01 = new WildcardQuery(new Term("id","*"));
+					} else {
+						MultiFieldQueryParser parser = new MultiFieldQueryParser(new String[]{"summary", "content"}, new StandardAnalyzer());
+						query01 = parser.parse(searchString);
+					}
+					
+					TermQuery query02 = new TermQuery(new Term("applicant.emailAddress", email));
+					BooleanQuery bQuery = new BooleanQuery();
+					bQuery.add(query01,BooleanClause.Occur.MUST);
+					bQuery.add(query02,BooleanClause.Occur.MUST);
+					FullTextQuery fq = fullTextEntityManager.createFullTextQuery(bQuery, Resume.class);
 					fq.setFirstResult(pageIndex*pageSize).setMaxResults(pageSize);
 					pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
 					pageList.setList(fq.getResultList());
@@ -543,7 +589,7 @@ public class ResumeDaoHibernate implements ResumeDao {
 				
 				IList pageList = null;
 				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
-				QueryParser parser = new QueryParser("content", new StandardAnalyzer());
+				QueryParser parser = new QueryParser("id", new StandardAnalyzer());
 				try {
 					
 					org.apache.lucene.search.Query query = parser.parse(searchString);

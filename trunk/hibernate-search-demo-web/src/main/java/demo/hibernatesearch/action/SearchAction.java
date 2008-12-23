@@ -19,8 +19,12 @@ import demo.hibernatesearch.util.ListImpl;
 
 public abstract class SearchAction implements Preparable, SessionAware,
 		RequestAware {
-	private Map session;
-	private Map request;
+	
+	@Autowired
+	protected ResumeManager resumeManager;
+	
+	protected Map session;
+	protected Map request;
 	private String page;
 	private String query;
 
@@ -41,8 +45,9 @@ public abstract class SearchAction implements Preparable, SessionAware,
 		PagerModel pagerModel = (PagerModel) ServletActionContext
 				.getServletContext().getAttribute(Constants.PAGER_MODEL);
 		pagerModel.setPageSize(Constants.PAGE_SIZE);
-		pagerModel.setBaseLink("search.htm");
+		pagerModel.setBaseLink("simple-search.htm");
 		pagerModel.setPageIndex(pageIndex);
+		pagerModel.setParams("searchString");
 		pagerModel.setTotalItems(searchList.getTotalItemCount());
 		request.put("listResume", searchList);
 		request.put("pager", pagerModel);
@@ -80,6 +85,13 @@ public abstract class SearchAction implements Preparable, SessionAware,
 
 	public void setPage(String page) {
 		this.page = page;
+	}
+	public ResumeManager getResumeManager() {
+		return resumeManager;
+	}
+
+	public void setResumeManager(ResumeManager resumeManager) {
+		this.resumeManager = resumeManager;
 	}
 
 }
