@@ -30,17 +30,8 @@ public class NewResumeAction extends ActionSupport implements SessionAware {
 	private String summary;
 	private String content;
 	
-
-	public String sayHello() throws Exception {
-
-		System.out.println("This is Tin Tran's code");
-		return Action.SUCCESS;
-	}
-
 	public String execute() throws Exception {
 
-		System.out.println(summary);
-		System.out.println(content);
 		Resume resume = new Resume();
 		resume.setSummary(summary);
 		resume.setContent(content.getBytes());
