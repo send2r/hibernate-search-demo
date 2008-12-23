@@ -152,6 +152,10 @@ public class ResumeManagerImpl implements ResumeManager {
 		return resumeDao.simpleSearch(pageIndex, pageSize, searchString);
 	}
 	
+	public IList<Resume> simpleSearchWithEmail(final String email, final int pageIndex, final int pageSize,final String searchString) {
+		return resumeDao.simpleSearchWithEmail(email, pageIndex, pageSize, searchString);
+	}
+	
 	
 
 }
