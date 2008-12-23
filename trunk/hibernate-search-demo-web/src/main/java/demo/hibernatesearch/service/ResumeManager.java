@@ -55,4 +55,6 @@ public interface ResumeManager {
 	IList<Resume> getAllResum(final int pageIndex, final int pageSize);
 	
 	public User getUserByEmail(String emailAddress);
+	
+	public IList<Resume> simpleSearch(final int pageIndex, final int pageSize,final String searchString);
 }
