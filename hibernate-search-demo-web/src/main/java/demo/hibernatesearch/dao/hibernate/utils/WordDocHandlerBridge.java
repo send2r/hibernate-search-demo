@@ -2,6 +2,7 @@ package demo.hibernatesearch.dao.hibernate.utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 import org.apache.poi.hwpf.usermodel.Range;
 import org.hibernate.search.bridge.StringBridge;
@@ -28,7 +29,12 @@ public class WordDocHandlerBridge implements StringBridge {
 			}
 		} catch (IOException ex) {
 			//ex.printStackTrace();
-			return new String((byte[])arg0);
+			try {
+				return new String((byte[])arg0,"utf-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return _result.toString();
 	}
