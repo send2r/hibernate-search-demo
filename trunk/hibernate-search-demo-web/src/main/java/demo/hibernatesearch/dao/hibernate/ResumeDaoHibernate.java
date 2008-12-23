@@ -14,8 +14,12 @@ import javax.persistence.Query;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.queryParser.MultiFieldQueryParser;
+import org.apache.lucene.queryParser.ParseException;
+import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.TermQuery;
@@ -473,7 +477,7 @@ public class ResumeDaoHibernate implements ResumeDao {
 		return results;
 	}
 	
-	public IList<Resume> getAllResum(final int pageIndex, final int pageSize){
+	public IList<Resume> getAllResum(final int pageIndex, final int pageSize) {
 		Object results = getJpaTemplate().execute(new JpaCallback() {
 			public Object doInJpa(EntityManager em) throws PersistenceException {
 				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
@@ -500,5 +504,61 @@ public class ResumeDaoHibernate implements ResumeDao {
 		}
 		return result;		
 	}
-
+	
+	public IList<Resume> simpleSearch(final int pageIndex, final int pageSize,final String searchString) {
+		
+		Object results = getJpaTemplate().execute(new JpaCallback() {
+			public Object doInJpa(EntityManager em) throws PersistenceException {
+				
+				IList pageList = null;
+				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
+				MultiFieldQueryParser parser = new MultiFieldQueryParser(new String[]{"summary", "content"}, new StandardAnalyzer()); 
+				
+				try {
+					
+					org.apache.lucene.search.Query query = parser.parse(searchString);
+					FullTextQuery fq = fullTextEntityManager.createFullTextQuery(query, Resume.class);
+					fq.setFirstResult(pageIndex*pageSize).setMaxResults(pageSize);
+					pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
+					pageList.setList(fq.getResultList());
+					
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if (pageList == null) {
+					pageList = new ListImpl();
+				}
+				return pageList;
+			}
+		});
+		return (IList<Resume>) results;
+	}
+	
+	public IList<Resume> advanceSearch(final int pageIndex, final int pageSize,final String searchString) {
+		
+		Object results = getJpaTemplate().execute(new JpaCallback() {
+			public Object doInJpa(EntityManager em) throws PersistenceException {
+				
+				IList pageList = null;
+				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
+				QueryParser parser = new QueryParser("content", new StandardAnalyzer());
+				try {
+					
+					org.apache.lucene.search.Query query = parser.parse(searchString);
+					FullTextQuery fq = fullTextEntityManager.createFullTextQuery(query, Resume.class);
+					fq.setFirstResult(pageIndex).setMaxResults(pageSize);
+					pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
+					pageList.setList(fq.getResultList());
+					
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return pageList;
+			}
+		});
+		return (IList<Resume>) results;
+	}
 }
