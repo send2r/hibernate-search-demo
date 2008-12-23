@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="gb2312"?>
+<?xml version="1.0" encoding="utf-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib uri="/WEB-INF/tld/belga-ui.tld" prefix="belga"%>
@@ -18,7 +18,7 @@
 		<input value="Search" type="submit"/>
 	</form>
 </div>
-<s:form name="home" action="resume-add.htm" theme="simple">
+<s:form name="home" action="delete-resume.htm" theme="simple">
 <table class="ItemList">
 	<tr>
 		<th class="Id"><s:text name="home.table.id" /></th>
@@ -30,13 +30,17 @@
 			<th class="Delete"><input type="checkbox" onclick="checkAll(this, document.home.listDelete);"/></th>
 		</s:if>
 	</tr>
-	<s:iterator value="#request.listResume" id="resume">
+	<s:iterator value="#request.listResume" >
 		<tr>
 			<td class="Id"><s:property value="id" /></td>
 			<td class="UserName"><s:property value="applicant.fullName" /></td>
 			<td class="Email"><s:property value="applicant.emailAddress" /></td>
-			
-			<td class="Summary"><div><a href="<s:url action="edit-resume.htm" />"><s:property value="summary" /></a></div></td>
+			<s:if test="#session.currentUser != null">
+				<td class="Summary"><div><a href="<s:url value="edit-resume.htm?id=%{id}" />"><s:property value="summary" escape="true" /></a></div></td>
+			</s:if>
+			<s:else>
+				<td class="Summary"><div><s:property value="summary" escape="true"/></div></td>
+			</s:else>
 			<td class="CreatedDate"><s:property value="lastUpdated" /></td>
 			<s:if test="#session.currentUser != null">
 				<td class="Delete"><input type="checkbox" value="<s:property value="id"/>" name="listDelete"/></td>
@@ -46,8 +50,8 @@
 	<s:if test="#session.currentUser != null">
 		<tr>
 			<td colspan="6" class="Function">
-				<input type="submit" value="AddResume"/>
-				<input type="button" value="Delete"/>
+				<input type="button" value="AddResume" onclick="goURL('<s:url value="resume-add.htm?page=%{#request.pager.pageIndex}" includeParams="none"/>');"/>
+				<input type="submit" value="Delete"/>
 			</td>
 		</tr>
 	</s:if>
