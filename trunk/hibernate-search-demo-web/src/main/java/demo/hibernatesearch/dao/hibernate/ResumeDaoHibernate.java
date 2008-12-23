@@ -119,7 +119,8 @@ public class ResumeDaoHibernate implements ResumeDao {
 	 * Auto Indexing
 	 */
 	public void updateResume(Resume resume) {
-		getJpaTemplate().refresh(resume);
+		getJpaTemplate().merge(resume);
+		//getJpaTemplate().refresh(resume);
 	}
 
 	/**
@@ -133,7 +134,8 @@ public class ResumeDaoHibernate implements ResumeDao {
 	 * Auto Indexing
 	 */
 	public void deleteResume(Resume resume) {
-		getJpaTemplate().remove(resume);
+		Resume rs = getJpaTemplate().getReference(Resume.class, resume.getId());
+		getJpaTemplate().remove(rs);
 	}
 
 	/**

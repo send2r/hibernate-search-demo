@@ -112,7 +112,9 @@ public class Resume implements Serializable {
 	public void setLastUpdated(Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
-
+	public String getContentString(){
+		return new String(this.content);
+	}
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this,
 				ToStringStyle.MULTI_LINE_STYLE);
