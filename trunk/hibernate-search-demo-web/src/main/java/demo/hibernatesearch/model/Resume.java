@@ -63,7 +63,7 @@ public class Resume implements Serializable {
 	private String summary;
 
 	@Lob
-	@Field(name = "resume", index = Index.TOKENIZED, store = Store.NO)
+	@Field(name = "content", index = Index.TOKENIZED, store = Store.YES)
 	@FieldBridge(impl = demo.hibernatesearch.dao.hibernate.utils.WordDocHandlerBridge.class)
 	private byte[] content; // MS Word Doc
 
