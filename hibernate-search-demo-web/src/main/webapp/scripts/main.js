@@ -1,6 +1,13 @@
 function checkAll(it, field){
-	for (i = 0; i < field.length; i++){
-		field[i].checked = it.checked ;
+	if(field.legth == 0){
+		field.checked = it.checked;
+	}else {
+		for (i = 0; i < field.length; i++){
+			field[i].checked = it.checked ;
+		}
 	}
 
+}
+function goURL(url){
+	document.location = url; 
 }

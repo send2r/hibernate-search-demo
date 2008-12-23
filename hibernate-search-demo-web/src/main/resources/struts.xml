@@ -46,14 +46,27 @@
       		<result name="success" type="redirect-action">home</result>       			
 		</action>
 		
-        <action name="resume-add">  
+        <action name="resume-add" method="addResume" class="demo.hibernatesearch.action.NewResumeAction">  
        			<result name="none">/resume/error.jsp</result>       			
-       			<result>/resume/resume-add.jsp</result>       			
+       			<result>/resume/resume-add.jsp?page=${page}</result>       			
 		</action>
 		
 		<action name="save-newresume" class="demo.hibernatesearch.action.NewResumeAction">        			 			
        			<result name="input">/resume/resume-add.jsp</result>       			
-       			<result type="redirect-action">resume-add</result>       			
+       			<result name="success" type="redirect">/home.htm?page=${page}</result>       			
+		</action>
+		
+		<action name="edit-resume" method="editResume" class="demo.hibernatesearch.action.NewResumeAction">        			 			
+       			<result name="success">/resume/edit-resume.jsp</result>       			
+       			<result name="input" type="redirect-action">home</result>       			
+		</action>
+		
+		<action name="save-editresume" method="saveEditResume" class="demo.hibernatesearch.action.NewResumeAction">        			 			
+       			<result type="redirect">/home.htm?page=${page}</result>       			
+		</action>
+		
+		<action name="delete-resume" method="deleteResume" class="demo.hibernatesearch.action.NewResumeAction">        			 			
+       			<result type="redirect-action">home</result>       			
 		</action>
 		
 		<action name="simple-search" class="demo.hibernatesearch.action.SimpleSearchAction">        			 			
