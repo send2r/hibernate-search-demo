@@ -17,67 +17,69 @@ import demo.hibernatesearch.taglib.pager.PagerModel;
 import demo.hibernatesearch.util.IList;
 import demo.hibernatesearch.util.ListImpl;
 
-public abstract class  SearchAction implements Preparable, SessionAware, RequestAware{
-	@Autowired
-	private ResumeManager resumeManager;
+public abstract class SearchAction implements Preparable, SessionAware,
+		RequestAware {
 	private Map session;
 	private Map request;
 	private String page;
 	private String query;
-	
+
 	public abstract IList<Resume> search(int pageIndex, int pageSize);
+
 	public void prepare() throws Exception {
 	}
-	public String execute() throws Exception{
+
+	public String execute() throws Exception {
+
 		int pageIndex;
-		try{
+		try {
 			pageIndex = Integer.valueOf(this.page);
-		}catch(Exception e){
+		} catch (Exception e) {
 			pageIndex = 0;
 		}
-		IList<Resume> searchList =  search(pageIndex > 0
-						? pageIndex - 1
-						: pageIndex, Constants.PAGE_SIZE);
-		//IList<Resume> searchList = new ListImpl();
-		PagerModel pagerModel = (PagerModel)ServletActionContext.getServletContext().getAttribute(Constants.PAGER_MODEL);
+		IList<Resume> searchList = search(pageIndex, Constants.PAGE_SIZE);
+		PagerModel pagerModel = (PagerModel) ServletActionContext
+				.getServletContext().getAttribute(Constants.PAGER_MODEL);
 		pagerModel.setPageSize(Constants.PAGE_SIZE);
 		pagerModel.setBaseLink("search.htm");
 		pagerModel.setPageIndex(pageIndex);
 		pagerModel.setTotalItems(searchList.getTotalItemCount());
 		request.put("listResume", searchList);
 		request.put("pager", pagerModel);
-		
+
 		return Action.SUCCESS;
 	}
+
 	public String getQuery() {
 		return query;
 	}
+
 	public void setQuery(String query) {
 		this.query = query;
 	}
-	public ResumeManager getResumeManager() {
-		return resumeManager;
-	}
-	public void setResumeManager(ResumeManager resumeManager) {
-		this.resumeManager = resumeManager;
-	}
+
 	public Map getSession() {
 		return session;
 	}
+
 	public void setSession(Map session) {
 		this.session = session;
 	}
+
 	public Map getRequest() {
 		return request;
 	}
+
 	public void setRequest(Map request) {
 		this.request = request;
 	}
+
 	public String getPage() {
 		return page;
 	}
+
 	public void setPage(String page) {
 		this.page = page;
 	}
-	
+
 }
