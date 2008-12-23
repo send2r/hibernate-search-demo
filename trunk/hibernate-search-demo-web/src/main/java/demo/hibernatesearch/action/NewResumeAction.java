@@ -72,7 +72,7 @@ public class NewResumeAction extends ActionSupport implements SessionAware, Requ
 
 		Resume resume = new Resume();
 		resume.setSummary(summary);
-		resume.setContent(content.getBytes());
+		resume.setContent(content.getBytes("utf-8"));
 		resume.setLastUpdated(new Date());
 		User user = (User)session.get(Constants.CURRENT_USER);
 		resume.setApplicant(user);
@@ -94,7 +94,7 @@ public class NewResumeAction extends ActionSupport implements SessionAware, Requ
 		Resume resume = new Resume();
 		resume.setId(Long.valueOf(id));
 		resume.setSummary(summary);
-		resume.setContent(content.getBytes());
+		resume.setContent(content.getBytes("utf-8"));
 		resume.setLastUpdated(new Date());
 		User user = (User)session.get(Constants.CURRENT_USER);
 		resume.setApplicant(user);
