@@ -70,10 +70,12 @@
 		</action>
 		
 		<action name="simple-search" class="demo.hibernatesearch.action.SimpleSearchAction">        			 			
+				<interceptor-ref name="defaultStack" />
        			<result name="success">/home.jsp</result>       			
 		</action>
 	
-		<action name="advanced-search" class="demo.hibernatesearch.action.AdvanceSearchAction">        			 			
+		<action name="advanced-search" class="demo.hibernatesearch.action.AdvanceSearchAction">
+				<interceptor-ref name="defaultStack" />      			 			
        			<result name="success">/home.jsp</result>       			
 		</action>
 		
