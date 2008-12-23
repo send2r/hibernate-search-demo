@@ -57,4 +57,8 @@ public interface ResumeDao {
 	public IList<Resume> getAllResum(int pageIndex, int pageSize);
 	
 	public User getUserByEmail(String emailAddress);
+	
+	public IList<Resume> simpleSearch(final int pageIndex, final int pageSize, String searchString);
+	
+	public IList<Resume> advanceSearch(final int pageIndex, final int pageSize, String searchString);
 }
