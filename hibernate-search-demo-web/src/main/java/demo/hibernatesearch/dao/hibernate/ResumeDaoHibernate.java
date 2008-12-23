@@ -183,7 +183,7 @@ public class ResumeDaoHibernate implements ResumeDao {
 
 				FullTextQuery fq = fullTextEntityManager.createFullTextQuery(
 						tq, Resume.class);
-				fq.setFirstResult(pageIndex).setMaxResults(pageSize);
+				fq.setFirstResult(pageIndex*pageSize).setMaxResults(pageSize);
 				
 				IList<Resume> results = new ListImpl(fq.getResultList(), fq.getResultSize(), pageIndex, pageSize);
 				
@@ -479,7 +479,7 @@ public class ResumeDaoHibernate implements ResumeDao {
 				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
 				FullTextQuery fq = fullTextEntityManager.createFullTextQuery(
 						new WildcardQuery(new Term("resume","*")), Resume.class);
-				fq.setFirstResult(pageIndex).setMaxResults(pageSize);
+				fq.setFirstResult(pageIndex*pageSize).setMaxResults(pageSize);
 				
 				IList pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
 				pageList.setList(fq.getResultList());
