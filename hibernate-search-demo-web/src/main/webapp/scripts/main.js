@@ -15,3 +15,8 @@ function processString(it){
 	it.searchString.value=Url.encode(it.searchString.value);
 	return true;
 }
+
+function openForm(id){
+	var form = document.getElementById(id);
+	form.style.display = "";
+}
