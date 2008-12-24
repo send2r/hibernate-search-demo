@@ -11,3 +11,7 @@ function checkAll(it, field){
 function goURL(url){
 	document.location = url; 
 }
+function processString(it){
+	it.searchString.value=Url.encode(it.searchString.value);
+	return true;
+}
