@@ -1,6 +1,9 @@
 package demo.hibernatesearch.model;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,6 +17,7 @@ import javax.persistence.TemporalType;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.apache.poi.hwpf.usermodel.Range;
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.FilterDefs;
@@ -113,7 +117,28 @@ public class Resume implements Serializable {
 		this.lastUpdated = lastUpdated;
 	}
 	public String getContentString(){
-		return new String(this.content);
+		
+		StringBuilder _result = new StringBuilder();
+		try {
+			ByteArrayInputStream bais = new ByteArrayInputStream(content);
+			org.apache.poi.hwpf.HWPFDocument doc = new org.apache.poi.hwpf.HWPFDocument(
+					bais);
+			Range range = doc.getRange();
+			int np = range.numParagraphs();
+			for (int i = 0; i < np; i++) {
+				_result.append(range.getParagraph(i).text());
+				_result.append(" ");
+			}
+		} catch (IOException ex) {
+			//ex.printStackTrace();
+			try {
+				return new String(content,"utf-8");
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return _result.toString();
 	}
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this,
