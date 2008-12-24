@@ -1,15 +1,13 @@
 package demo.hibernatesearch.action;
 
-import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 import demo.hibernatesearch.application.Constants;
 import demo.hibernatesearch.model.Resume;
 import demo.hibernatesearch.model.User;
-import demo.hibernatesearch.service.ResumeManager;
 import demo.hibernatesearch.util.IList;
-import demo.hibernatesearch.util.ListImpl;
 
 public class SimpleSearchAction extends SearchAction {
 
@@ -17,7 +15,14 @@ public class SimpleSearchAction extends SearchAction {
 	
 	@Override
 	public IList<Resume> search(int pageIndex, int pageSize) {
-		
+
+		try {
+			String strValue= URLDecoder.decode(searchString, "utf-8");
+			searchString = strValue;
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		User currentUser = (User)session.get(Constants.CURRENT_USER);
 		IList<Resume> listResume = null;
 		if(currentUser == null) {
@@ -25,6 +30,7 @@ public class SimpleSearchAction extends SearchAction {
 		} else {
 			return resumeManager.simpleSearchWithEmail(currentUser.getEmailAddress(), pageIndex > 0 ? pageIndex - 1 : pageIndex, pageSize, searchString);
 		}
+
 	}
 	
 	public String getSearchString() {
