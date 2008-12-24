@@ -18,10 +18,18 @@
 
 <div id="search">
 	<form action="simple-search.htm" method="get" onsubmit="return processString(this);">
-		<s:textfield name="searchString"></s:textfield>
-		<input value="Search" type="submit"/>
+		<div id="simpleSearch">
+			<span class="Link">
+				<a href="<s:url value="config-search.htm" includeParams="none"/>" ><img src="<s:url value="/images/advancedsearch.gif" includeParams="none"/>" alt="" /></a>
+			</span>
+			<span class="Form">
+				<s:textfield name="searchString"></s:textfield>
+				<input value="Search" type="submit"/>
+			</span>
+		</div>
 	</form>
 </div>
+
 <s:form name="home" action="delete-resume.htm" theme="simple">
 <table class="ItemList">
 	<tr>
