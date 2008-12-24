@@ -12,6 +12,7 @@
 	<link type="text/css" href="<s:url value='/styles/header.css' includeParams='none'/>" rel="stylesheet"/> 
 	<link type="text/css" href="<s:url value='/styles/footer.css' includeParams='none'/>" rel="stylesheet"/>
 	<script type="text/javascript" src="<s:url value='/scripts/main.js' includeParams='none'/>"></script>
+	<script type="text/javascript" src="<s:url value='/scripts/webtoolkit.js' includeParams='none'/>"></script>
 </head>
 <body top-marign="0">
 	<div id="pageContent">
