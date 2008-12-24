@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%
+	request.setCharacterEncoding("utf-8");
+	response.setCharacterEncoding("utf-8");
+%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ taglib uri="/WEB-INF/tld/belga-ui.tld" prefix="belga"%>
 <head>
@@ -13,7 +17,7 @@
 <body>
 
 <div id="search">
-	<form action="simple-search.htm">
+	<form action="simple-search.htm" method="get" onsubmit="return processString(this);">
 		<s:textfield name="searchString"></s:textfield>
 		<input value="Search" type="submit"/>
 	</form>
