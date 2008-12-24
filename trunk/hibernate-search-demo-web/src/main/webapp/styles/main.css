@@ -113,3 +113,65 @@ div.AddNew div.Footer {
 	text-align:right;
 	float: right;
 }
+div#simpleSearch span.Link{
+	float:left;
+}
+div#simpleSearch span.Link a{
+	text-decoration: none;
+}
+div#simpleSearch {
+	height: 30px;
+}
+div#simpleSearch img{
+	border:none;
+}
+
+div.Search{
+	margin: 0 auto;
+	width: 550px;
+	color: white;
+	font-weight: bold;
+	
+}
+div.Search div.SearchBox{
+	margin: 50px 0px;
+	border: 1px solid #66CCFF;
+	overflow: hidden;
+}
+
+div.Search div.Header {
+	height: 21px;
+	background: url("../images/table-header.jpg") repeat-x left top;
+	padding-left: 5px;
+}
+div.Search div.SearchBox div.Content{
+	font-weight:normal;
+	color: black;
+	margin: 5px 5px;
+}
+div.Search div.SearchBox div.Content div{
+	clear: both;
+}
+div.Search div.SearchBox div.Content span.Text{
+	display: block;
+	margin: 5px 5px;
+	float: left;
+	width: 200px;
+}
+div.Search div.SearchBox div.Content span.Input{
+	display: block;
+	margin: 0px 5px;
+	float: right;
+	width: 300px;
+}
+div.Search div.SearchBox div.Content span.Input input.Full {
+	border: 1px solid #cccccc;
+	width: 295px;
+}
+div.Search div.SearchBox div.Content div.Footer{
+	border-top: 1px solid #66CCFF;
+}
+div.Search div.SearchBox div.Content div.Footer span.Input {
+	text-align: left;
+	margin: 5px;
+}
