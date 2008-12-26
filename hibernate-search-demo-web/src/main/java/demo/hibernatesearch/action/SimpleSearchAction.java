@@ -11,34 +11,23 @@ import demo.hibernatesearch.util.IList;
 
 public class SimpleSearchAction extends SearchAction {
 
-	private String searchString;
-	
 	@Override
 	public IList<Resume> search(int pageIndex, int pageSize) {
 
-		try {
-			String strValue= URLDecoder.decode(searchString, "utf-8");
-			searchString = strValue;
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			String strValue= URLDecoder.decode(searchString, "utf-8");
+//			searchString = strValue;
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		User currentUser = (User)session.get(Constants.CURRENT_USER);
 		IList<Resume> listResume = null;
 		if(currentUser == null) {
 			return resumeManager.simpleSearch(pageIndex > 0 ? pageIndex - 1 : pageIndex, pageSize, searchString);
 		} else {
-			return resumeManager.simpleSearchWithEmail(currentUser.getEmailAddress(), pageIndex > 0 ? pageIndex - 1 : pageIndex, pageSize, searchString);
+			return resumeManager.simpleSearchWithEmail(pageIndex > 0 ? pageIndex - 1 : pageIndex, pageSize, searchString, currentUser.getEmailAddress());
 		}
 
 	}
-	
-	public String getSearchString() {
-		return searchString;
-	}
-
-	public void setSearchString(String searchString) {
-		this.searchString = searchString;
-	}
-
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import demo.hibernatesearch.model.AdvanceSearchDTO;
 import demo.hibernatesearch.model.Resume;
 import demo.hibernatesearch.model.User;
 import demo.hibernatesearch.util.IList;
@@ -60,7 +61,9 @@ public interface ResumeDao {
 	
 	public IList<Resume> simpleSearch(final int pageIndex, final int pageSize, String searchString);
 	
-	public IList<Resume> simpleSearchWithEmail(final String email, final int pageIndex, final int pageSize,final String searchString);
+	public IList<Resume> simpleSearchWithEmail(final int pageIndex, final int pageSize,final String searchString, final String email);
 	
-	public IList<Resume> advanceSearch(final int pageIndex, final int pageSize, String searchString);
+	public IList<Resume> advanceSearch(final int pageIndex, final int pageSize, final AdvanceSearchDTO searchDTO);
+	
+	public IList<Resume> advanceSearchWithEmail(final int pageIndex, final int pageSize,final AdvanceSearchDTO searchDTO, final String email);
 }

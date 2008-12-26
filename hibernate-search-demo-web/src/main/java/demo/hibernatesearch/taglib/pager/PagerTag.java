@@ -5,6 +5,7 @@
  */
 package demo.hibernatesearch.taglib.pager;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -128,6 +129,14 @@ public class PagerTag extends UITag<PagerModel> {
                              buff.append("&" + paramName + "=" + response.encodeURL(Utils.convertFromISO88591ToUTF8(paramValues[j])));
                          }
                      }
+                 } else if (request.getAttribute(paramName) != null) {
+                	 String paramValue = (String) request.getAttribute(paramName);
+                	 try {
+						buff.append("&" + paramName + "=" + URLEncoder.encode(Utils.convertFromISO88591ToUTF8(paramValue),"UTF-8"));
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+					}
+                	 
                  }
              }
              model.setBuiltParams(buff.toString());

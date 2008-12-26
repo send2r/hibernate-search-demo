@@ -25,6 +25,16 @@ public class ListImpl implements IList, Serializable {
 	private int pageIndex;
 
 	private int pageSize;
+	
+	private String searchString;
+
+	public String getSearchString() {
+		return searchString;
+	}
+
+	public void setSearchString(String searchString) {
+		this.searchString = searchString;
+	}
 
 	public ListImpl() {
 		this(new ArrayList(), 0, 0, 0);

@@ -1,6 +1,7 @@
 package demo.hibernatesearch.service.impl;
 
 import demo.hibernatesearch.dao.ResumeDao;
+import demo.hibernatesearch.model.AdvanceSearchDTO;
 import demo.hibernatesearch.model.Resume;
 import demo.hibernatesearch.model.User;
 import demo.hibernatesearch.service.ResumeManager;
@@ -152,10 +153,16 @@ public class ResumeManagerImpl implements ResumeManager {
 		return resumeDao.simpleSearch(pageIndex, pageSize, searchString);
 	}
 	
-	public IList<Resume> simpleSearchWithEmail(final String email, final int pageIndex, final int pageSize,final String searchString) {
-		return resumeDao.simpleSearchWithEmail(email, pageIndex, pageSize, searchString);
+	public IList<Resume> simpleSearchWithEmail(final int pageIndex, final int pageSize,final String searchString, final String email) {
+		return resumeDao.simpleSearchWithEmail(pageIndex, pageSize, searchString, email);
 	}
 	
+	public IList<Resume> advanceSearch(final int pageIndex, final int pageSize,final AdvanceSearchDTO searchDTO) {
+		return resumeDao.advanceSearch(pageIndex, pageSize, searchDTO);
+	}
 	
+	public IList<Resume> advanceSearchWithEmail(final int pageIndex, final int pageSize,final AdvanceSearchDTO searchDTO, String email) {
+		return resumeDao.advanceSearchWithEmail(pageIndex, pageSize, searchDTO, email);
+	}	
 
 }
