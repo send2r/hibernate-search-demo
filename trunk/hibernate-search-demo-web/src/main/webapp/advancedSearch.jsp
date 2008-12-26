@@ -74,7 +74,7 @@
 									button         :    "GeneralFromDateTime",  // trigger for the calendar (button ID)
 									align          :    "Tr",           // alignment (defaults to "Bl")
 									singleClick    :    true,
-									ifFormat       :    "%d-%m-%Y"
+									ifFormat       :    "%Y-%m-%d"
 								});
 					        </script>
 						</span>
@@ -92,7 +92,7 @@
 									button         :    "GeneralToDateTime",  // trigger for the calendar (button ID)
 									align          :    "Tr",           // alignment (defaults to "Bl")
 									singleClick    :    true,
-									ifFormat       :    "%d-%m-%Y"
+									ifFormat       :    "%Y-%m-%d"
 								});
 					        </script>
 						</span>

@@ -32,6 +32,12 @@ public interface IList<E> extends List {
     public void setTotalItemCount(int totalItemCount);
     
     public void setList(List list);
+    
     public List getList();
+    
+    public String getSearchString();
+    
+    public void setSearchString(String searchString);
+    
     
 }

@@ -25,6 +25,8 @@ public abstract class SearchAction implements Preparable, SessionAware,
 	
 	protected Map session;
 	protected Map request;
+	protected String searchString;
+	
 	private String page;
 	private String query;
 
@@ -49,6 +51,8 @@ public abstract class SearchAction implements Preparable, SessionAware,
 		pagerModel.setPageIndex(pageIndex);
 		pagerModel.setParams("searchString");
 		pagerModel.setTotalItems(searchList.getTotalItemCount());
+		request.put("searchString", searchList.getSearchString());
+		searchString = searchList.getSearchString();
 		request.put("listResume", searchList);
 		request.put("pager", pagerModel);
 
@@ -93,5 +97,14 @@ public abstract class SearchAction implements Preparable, SessionAware,
 	public void setResumeManager(ResumeManager resumeManager) {
 		this.resumeManager = resumeManager;
 	}
+	
+	public String getSearchString() {
+		return searchString;
+	}
+
+	public void setSearchString(String searchString) {
+		this.searchString = searchString;
+	}
+
 
 }
