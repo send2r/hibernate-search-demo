@@ -23,7 +23,7 @@
 				<a href="<s:url value="config-search.htm" includeParams="none"/>" ><img src="<s:url value="/images/advancedsearch.gif" includeParams="none"/>" alt="" /></a>
 			</span>
 			<span class="Form">
-				<s:textfield name="searchString"></s:textfield>
+				<s:textfield name="searchString" size="60"></s:textfield>
 				<input value="Search" type="submit"/>
 			</span>
 		</div>
