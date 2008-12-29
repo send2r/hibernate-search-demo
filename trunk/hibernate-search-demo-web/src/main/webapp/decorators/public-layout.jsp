@@ -35,6 +35,7 @@
 	<!--Footer content -->
 	<div id="footer">
 		<div id="footerContent">
+			Copyright © 2008 Java Team
 		</div>
 	</div>
 	<!--End of footer -->
