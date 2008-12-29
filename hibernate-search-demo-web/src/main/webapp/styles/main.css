@@ -33,7 +33,9 @@ body form{
 	margin: 0;
 	padding: 0;
 }
-
+:focus {
+	-moz-outline-style: none;
+}
 div.Login{
 	margin: 0 auto;
 	width: 250px;
