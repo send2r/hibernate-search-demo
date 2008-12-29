@@ -684,7 +684,7 @@ public class ResumeDaoHibernate implements ResumeDao {
 			finalQuery.add(range, BooleanClause.Occur.MUST);
 		}
 		if ("".equals(finalQuery.toString())) {
-			finalQuery.add(new TermQuery(new Term("id","*")),BooleanClause.Occur.MUST);
+			finalQuery.add(new WildcardQuery(new Term("id","*")),BooleanClause.Occur.MUST);
 		}
 		
 		return finalQuery;		
