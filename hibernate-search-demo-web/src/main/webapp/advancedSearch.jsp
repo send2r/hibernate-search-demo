@@ -57,8 +57,8 @@
 							<s:text name="advanced-search.fields"/>
 						</span>
 						<span class="Input">
-							<input type="checkbox" name="fields" value="summary"/> <s:text name="resume.summary"/>
-							<input type="checkbox" name="fields" value="content"/> <s:text name="resume.content"/>
+							<input type="radio" name="field" value="summary"/> <s:text name="resume.summary"/>
+							<input type="radio" name="field" value="content"/> <s:text name="resume.content"/>
 						</span>
 					</div>
 					<div>

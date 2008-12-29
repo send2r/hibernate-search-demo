@@ -22,6 +22,7 @@ import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
+import org.apache.lucene.search.PhraseQuery;
 import org.apache.lucene.search.RangeQuery;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.WildcardQuery;
@@ -593,70 +594,11 @@ public class ResumeDaoHibernate implements ResumeDao {
 		Object results = getJpaTemplate().execute(new JpaCallback() {
 			public Object doInJpa(EntityManager em) throws PersistenceException {
 				
-				BooleanQuery finalQuery = new BooleanQuery();
-				org.apache.lucene.search.Query queryPhrases = null;
-				if (searchDTO.getWordPhrase() != null && !"".equals(searchDTO.getWordPhrase().trim()) ) {
-					queryPhrases = new TermQuery(new Term("summary",searchDTO.getWordPhrase()));
-					finalQuery.add(queryPhrases, BooleanClause.Occur.MUST);
-				}
-				
-				if (searchDTO.getAllWords() != null && !"".equals(searchDTO.getAllWords().trim())) {
-					String[] allWordsArr = searchDTO.getAllWords().split(" ");
-					BooleanQuery queryAllWord = new BooleanQuery();
-					for (int i = 0; i < allWordsArr.length; i++) {
-						String string = allWordsArr[i];
-						queryAllWord.add(new TermQuery(new Term("summary",string)), BooleanClause.Occur.MUST);
-					}
-					finalQuery.add(queryAllWord,BooleanClause.Occur.MUST);
-				}
-				if (searchDTO.getOneOrMore() != null && !"".equals(searchDTO.getOneOrMore().trim())) {
-					String[] oneOrMoreArr = searchDTO.getOneOrMore().split(" ");
-					BooleanQuery queryOneOrMore = new BooleanQuery();
-					for (int i = 0; i < oneOrMoreArr.length; i++) {
-						String string = oneOrMoreArr[i];
-						queryOneOrMore.add(new TermQuery(new Term("summary",string)), BooleanClause.Occur.SHOULD);
-					}
-					finalQuery.add(queryOneOrMore,BooleanClause.Occur.MUST);
-				}
-				
-				if (searchDTO.getNoneWords() != null && !"".equals(searchDTO.getNoneWords().trim())) {
-					String[] noneWordsArr = searchDTO.getNoneWords().split(" ");
-					BooleanQuery queryNoneWord = new BooleanQuery();
-					for (int i = 0; i < noneWordsArr.length; i++) {
-						String string = noneWordsArr[i];
-						finalQuery.add(new TermQuery(new Term("summary",string)), BooleanClause.Occur.MUST_NOT);
-					}
-				}
-				
-				
-				Term from = null;
-				Term to = null;
-				if (searchDTO.getFromDate() != null && !"".equals(searchDTO.getFromDate())) {
-					from = new Term("lastUpdated",searchDTO.getFromDate().replaceAll("-", ""));
-				}
-				if (searchDTO.getToDate() != null && !"".equals(searchDTO.getToDate()) ) {
-					to = new Term("lastUpdated",searchDTO.getToDate().replaceAll("-", ""));
-				}
-				if (from != null || to != null) {
-					RangeQuery range = new RangeQuery(from,to,true);
-					finalQuery.add(range, BooleanClause.Occur.MUST);
-				}
-				if ("".equals(finalQuery.toString())) {
-					finalQuery.add(new TermQuery(new Term("id","*")),BooleanClause.Occur.MUST);
-				}
-				
-//				QueryParser parser = new QueryParser("summary", new StandardAnalyzer());
-//				org.apache.lucene.search.Query  query01 = null;
-//				try {
-//					query01 = parser.parse(finalQuery.toString());
-//				} catch (ParseException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-				
+				BooleanQuery finalQuery = buildQuey(searchDTO);
+					
 				IList pageList = null;
 				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
-				FullTextQuery fq = fullTextEntityManager.createFullTextQuery(queryPhrases, Resume.class);
+				FullTextQuery fq = fullTextEntityManager.createFullTextQuery(finalQuery, Resume.class);
 				fq.setFirstResult(pageIndex).setMaxResults(pageSize);
 				pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
 				pageList.setList(fq.getResultList());
@@ -672,27 +614,83 @@ public class ResumeDaoHibernate implements ResumeDao {
 		Object results = getJpaTemplate().execute(new JpaCallback() {
 			public Object doInJpa(EntityManager em) throws PersistenceException {
 				
-				String searchString = "";
+
+				BooleanQuery finalQuery = buildQuey(searchDTO);
+				TermQuery queryEmail = new TermQuery(new Term("applicant.emailAddress", email));
+				finalQuery.add(queryEmail,BooleanClause.Occur.MUST);
 				IList pageList = null;
 				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
-				QueryParser parser = new QueryParser("id", new StandardAnalyzer());
-				try {
-					
-					org.apache.lucene.search.Query query = parser.parse(searchString);
-					FullTextQuery fq = fullTextEntityManager.createFullTextQuery(query, Resume.class);
-					fq.setFirstResult(pageIndex).setMaxResults(pageSize);
-					pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
-					pageList.setList(fq.getResultList());
-					
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+				FullTextQuery fq = fullTextEntityManager.createFullTextQuery(finalQuery, Resume.class);
+				fq.setFirstResult(pageIndex).setMaxResults(pageSize);
+				pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
+				pageList.setList(fq.getResultList());
+				pageList.setSearchString(finalQuery.toString());
 				return pageList;
 			}
 		});
 		return (IList<Resume>) results;
+	}
+	
+	private BooleanQuery buildQuey( AdvanceSearchDTO searchDTO) {
+		
+		String field = searchDTO.getField();
+		BooleanQuery finalQuery = new BooleanQuery();
+		if (searchDTO.getWordPhrase() != null && !"".equals(searchDTO.getWordPhrase().trim())) {
+			
+			String[] phrase = searchDTO.getWordPhrase().split(" ");
+			PhraseQuery phraseQuery = new PhraseQuery();
+			for (int i=0; i < phrase.length; i++) {
+				phraseQuery.add(new Term(field, phrase[i]));
+			}
+			finalQuery.add(phraseQuery, BooleanClause.Occur.MUST);
+		}
+		
+		
+		
+		if (searchDTO.getAllWords() != null && !"".equals(searchDTO.getAllWords().trim())) {
+			String[] allWordsArr = searchDTO.getAllWords().split(" ");
+			BooleanQuery queryAllWord = new BooleanQuery();
+			for (int i = 0; i < allWordsArr.length; i++) {
+				String string = allWordsArr[i];
+				queryAllWord.add(new TermQuery(new Term(field,string)), BooleanClause.Occur.MUST);
+			}
+			finalQuery.add(queryAllWord,BooleanClause.Occur.MUST);
+		}
+		if (searchDTO.getOneOrMore() != null && !"".equals(searchDTO.getOneOrMore().trim())) {
+			String[] oneOrMoreArr = searchDTO.getOneOrMore().split(" ");
+			BooleanQuery queryOneOrMore = new BooleanQuery();
+			for (int i = 0; i < oneOrMoreArr.length; i++) {
+				String string = oneOrMoreArr[i];
+				queryOneOrMore.add(new TermQuery(new Term(field,string)), BooleanClause.Occur.SHOULD);
+			}
+			finalQuery.add(queryOneOrMore,BooleanClause.Occur.MUST);
+		}
+		
+		if (searchDTO.getNoneWords() != null && !"".equals(searchDTO.getNoneWords().trim())) {
+			String[] noneWordsArr = searchDTO.getNoneWords().split(" ");
+			for (int i = 0; i < noneWordsArr.length; i++) {
+				String string = noneWordsArr[i];
+				finalQuery.add(new TermQuery(new Term(field,string)), BooleanClause.Occur.MUST_NOT);
+			}
+		}
+		
+		
+		Term from = null, to = null;
+		if (searchDTO.getFromDate() != null && !"".equals(searchDTO.getFromDate())) {
+			from = new Term("lastUpdated",searchDTO.getFromDate().replaceAll("-", ""));
+		}
+		if (searchDTO.getToDate() != null && !"".equals(searchDTO.getToDate()) ) {
+			to = new Term("lastUpdated",searchDTO.getToDate().replaceAll("-", ""));
+		}
+		if (from != null || to != null) {
+			RangeQuery range = new RangeQuery(from,to,true);
+			finalQuery.add(range, BooleanClause.Occur.MUST);
+		}
+		if ("".equals(finalQuery.toString())) {
+			finalQuery.add(new TermQuery(new Term("id","*")),BooleanClause.Occur.MUST);
+		}
+		
+		return finalQuery;		
 	}
 
 }

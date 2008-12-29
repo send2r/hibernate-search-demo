@@ -17,7 +17,7 @@ public class AdvanceSearchAction extends SearchAction {
 	private String wordPhrase;
 	private String oneOrMore;
 	private String noneWords;
-	private String[] fields;
+	private String field;
 	private String fromDate;
 	private String toDate;
 		
@@ -40,7 +40,7 @@ public class AdvanceSearchAction extends SearchAction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		searchDTO.setFields(fields);
+		searchDTO.setField(field);
 		searchDTO.setFromDate(fromDate);
 		searchDTO.setToDate(toDate);
 		User currentUser = (User)session.get(Constants.CURRENT_USER);
@@ -80,11 +80,11 @@ public class AdvanceSearchAction extends SearchAction {
 	public void setNoneWords(String noneWords) {
 		this.noneWords = noneWords;
 	}
-	public String[] getFields() {
-		return fields;
+	public String getField() {
+		return field;
 	}
-	public void setFields(String[] fields) {
-		this.fields = fields;
+	public void setField(String field) {
+		this.field = field;
 	}
 	public String getFromDate() {
 		return fromDate;
