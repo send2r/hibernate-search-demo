@@ -11,15 +11,15 @@ public class AdvanceSearchDTO {
 	
 	private String noneWords;
 	
-	private String[] fields;
+	private String field;
 	
 	private String fromDate;
 	
-	public String[] getFields() {
-		return fields;
+	public String getField() {
+		return field;
 	}
-	public void setFields(String[] fields) {
-		this.fields = fields;
+	public void setField(String field) {
+		this.field = field;
 	}
 	public String getFromDate() {
 		return fromDate;
