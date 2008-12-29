@@ -2,3 +2,8 @@ body div#footer {
 	height: 80px;
 	background: url("../images/footer.jpg") repeat-x left top;
 }
+div#footer div#footerContent{
+	color:white;
+	padding-top: 55px;
+	text-align:center;
+}
