@@ -70,9 +70,6 @@ public class ResumeDaoHibernate implements ResumeDao {
 	@Autowired
 	public ResumeDaoHibernate(EntityManagerFactory entityManagerFactory) {
 		this.jpaTemplate = new JpaTemplate(entityManagerFactory);
-		Map config = new HashMap();
-		config.put("hibernate.search.autoregister_listeners", "false");
-		jpaTemplate.setJpaPropertyMap(config);
 	}
 	
 	public JpaTemplate getJpaTemplate() {
