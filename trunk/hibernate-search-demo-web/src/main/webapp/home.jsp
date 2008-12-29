@@ -17,13 +17,13 @@
 <body>
 
 <div id="search">
-	<form action="simple-search.htm" method="post" >
+	<form action="simple-search.htm" method="get" onsubmit="return processString(this);">
 		<div id="simpleSearch">
 			<span class="Link">
 				<a href="<s:url value="config-search.htm" includeParams="none"/>" ><img src="<s:url value="/images/advancedsearch.gif" includeParams="none"/>" alt="" /></a>
 			</span>
 			<span class="Form">
-				<s:textfield name="searchString" size="70"></s:textfield>
+				<s:textfield name="searchString"></s:textfield>
 				<input value="Search" type="submit"/>
 			</span>
 		</div>
