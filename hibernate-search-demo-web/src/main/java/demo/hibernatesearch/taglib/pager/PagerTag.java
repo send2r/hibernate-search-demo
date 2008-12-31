@@ -124,19 +124,14 @@ public class PagerTag extends UITag<PagerModel> {
                  if (paramValues != null) {
                      for (int j = 0; paramValues != null && j < paramValues.length; j++) {
                          try{
-                         buff.append("&" + paramName + "=" + URLEncoder.encode(Utils.convertFromISO88591ToUTF8(paramValues[j]),"UTF-8"));
+                        	 buff.append("&" + paramName + "=" + paramValues[j]);
                          }catch(Exception ex){
-                             buff.append("&" + paramName + "=" + response.encodeURL(Utils.convertFromISO88591ToUTF8(paramValues[j])));
+                             //buff.append("&" + paramName + "=" + response.encodeURL(Utils.convertFromISO88591ToUTF8(paramValues[j])));
                          }
                      }
                  } else if (request.getAttribute(paramName) != null) {
                 	 String paramValue = (String) request.getAttribute(paramName);
-                	 try {
-						buff.append("&" + paramName + "=" + URLEncoder.encode(Utils.convertFromISO88591ToUTF8(paramValue),"UTF-8"));
-					} catch (UnsupportedEncodingException e) {
-						// TODO Auto-generated catch block
-					}
-                	 
+                	 buff.append("&" + paramName + "=" + paramValue);
                  }
              }
              model.setBuiltParams(buff.toString());
