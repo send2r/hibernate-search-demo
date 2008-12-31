@@ -11,6 +11,7 @@
 	<link type="text/css" href="<s:url value='/styles/main.css' includeParams='none'/>" rel="stylesheet"/>
 	<link type="text/css" href="<s:url value='/styles/header.css' includeParams='none'/>" rel="stylesheet"/> 
 	<link type="text/css" href="<s:url value='/styles/footer.css' includeParams='none'/>" rel="stylesheet"/>
+	<link type="text/css" href="<s:url value='/styles/navigation.css' includeParams='none'/>" rel="stylesheet"/>
 	<script type="text/javascript" src="<s:url value='/scripts/main.js' includeParams='none'/>"></script>
 	<script type="text/javascript" src="<s:url value='/scripts/webtoolkit.js' includeParams='none'/>"></script>
 </head>
@@ -25,6 +26,16 @@
 				<s:else>
 					<a href="<s:url value='/login.htm' includeParams='none'/>">Login</a>
 				</s:else>
+				<div id="navigation">
+					<ul>
+						<li class="Active">
+							<a href="<s:url value='/home.htm' includeParams='none'/>">Resume Management</a>
+						</li>
+						<li>
+							<a href="<s:url value='/file.htm' includeParams='none'/>">File Management</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<hr/>

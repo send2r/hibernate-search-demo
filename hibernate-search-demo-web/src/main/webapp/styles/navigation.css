@@ -1,0 +1,43 @@
+/*Styling for primany navigation*/
+div#navigation {
+	line-height: normal;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+
+}
+div#navigation ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+div#navigation li {
+  float: left;
+  background: url("../images/left-navi-bg.gif") no-repeat left top;
+  margin: 0 .2em;
+  padding: 0 0 0 9px;
+  font-size: .85em;
+}
+div#navigation li.Last {
+  margin: 0 0em 0em .2em;
+}
+div#navigation a {
+  float: left;
+  display: block;
+  background: url("../images/right-navi-bg.gif") no-repeat right top;
+  padding: 5px 15px 4px 6px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #666666;
+}
+div#navigation a:hover {
+  color: #ff6600;
+}
+div#navigation li.Active {
+	background: url("../images/left-current-bg.gif") no-repeat left top;
+}
+div#navigation li.Active a {
+  background: url("../images/right-current-bg.gif") no-repeat right top;
+  color: #ff6600;
+  padding-bottom: 5px;
+}

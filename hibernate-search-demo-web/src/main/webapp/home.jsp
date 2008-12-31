@@ -17,7 +17,7 @@
 <body>
 
 <div id="search">
-	<form action="simple-search.htm" method="get" onsubmit="return processString(this);">
+	<form action="simple-search.htm" method="get" >
 		<div id="simpleSearch">
 			<span class="Link">
 				<a href="<s:url value="config-search.htm" includeParams="none"/>" ><img src="<s:url value="/images/advancedsearch.gif" includeParams="none"/>" alt="" /></a>
