@@ -13,15 +13,6 @@ public class SimpleSearchAction extends SearchAction {
 
 	@Override
 	public IList<Resume> search(int pageIndex, int pageSize) {
-		try {
-			String strValue = searchString.replaceAll("\\+", "%2B");
-			strValue= URLDecoder.decode(strValue, "utf-8");
-			searchString = strValue;
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		User currentUser = (User)session.get(Constants.CURRENT_USER);
 		IList<Resume> listResume = null;
 		if(currentUser == null) {
