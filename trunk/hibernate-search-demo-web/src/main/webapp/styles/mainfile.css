@@ -1,0 +1,50 @@
+div.FileBox {
+	border: 1px solid red;
+	margin: 5px 20px;
+	height: 100px;
+	overflow: hidden;
+	padding: 5px;
+}
+
+div.FileBox img{
+	float: left;
+	width: 70px;
+}
+
+div.FileBox div.Content{
+	float: left;
+	width: 665px;
+	border: 1px solid blue;
+}
+
+div.FileBox div.Content a.Title{
+	font-weight: bold;
+}
+
+div.FileBox div.Content p.Text{
+	color:black;
+}
+
+div.FileBox div.Content a.More{
+	font-style: italic; 
+}
+
+div#uploadFile {
+	display:none;
+	position: absolute;
+	width:100%;
+	height:100%;
+	z-index: 999;
+	top:0;
+	left:0;
+	background: url("../images/semi-bg.png") top left;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+}
+
+div#uploadFile div#content{
+	border: 1px solid blue;
+	width: 515px;
+	margin: auto;
+	margin-top: 200px; 
+	height: 255px;
+}

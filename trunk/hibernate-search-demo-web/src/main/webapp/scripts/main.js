@@ -20,3 +20,8 @@ function openForm(id){
 	var form = document.getElementById(id);
 	form.style.display = "";
 }
+
+function showForm(){
+	var element = document.getElementById("uploadFile");
+	element.style.display = "block";
+}
