@@ -10,14 +10,3 @@ div#header div#headerContent {
 	text-align: right;
 	padding-top: 1px;
 }
-
-div#header div#headerContent a {
-    text-decoration: none;
-    color: white;    
-    display: block;
-    margin: 10px;    
-}
-
-div#header div#headerContent a:hover {
-    color: #EAEAEA;
-}

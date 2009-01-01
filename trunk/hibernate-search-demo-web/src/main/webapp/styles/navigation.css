@@ -2,7 +2,7 @@
 div#navigation {
 	line-height: normal;
 	position: absolute;
-	bottom: 0px;
+	bottom: -25px;
 	left: 0px;
 
 }
@@ -13,8 +13,8 @@ div#navigation ul {
 }
 div#navigation li {
   float: left;
-  background: url("../images/left-navi-bg.gif") no-repeat left top;
-  margin: 0 .2em;
+  background: url("../images/left-tab.gif") no-repeat left top;
+  margin: 0 3px 0 0;
   padding: 0 0 0 9px;
   font-size: .85em;
 }
@@ -24,20 +24,20 @@ div#navigation li.Last {
 div#navigation a {
   float: left;
   display: block;
-  background: url("../images/right-navi-bg.gif") no-repeat right top;
+  background: url("../images/right-tab.gif") no-repeat right top;
   padding: 5px 15px 4px 6px;
   text-decoration: none;
   font-weight: bold;
-  color: #666666;
+  color: #cccccc;
 }
 div#navigation a:hover {
   color: #ff6600;
 }
 div#navigation li.Active {
-	background: url("../images/left-current-bg.gif") no-repeat left top;
+	background: url("../images/left-tab-current.gif") no-repeat left top;
 }
 div#navigation li.Active a {
-  background: url("../images/right-current-bg.gif") no-repeat right top;
-  color: #ff6600;
+  background: url("../images/right-tab-current.gif") no-repeat right top;
+  color: white;
   padding-bottom: 5px;
 }
