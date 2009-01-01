@@ -23,6 +23,7 @@ body #pageContent {
 }
 body #mainContent{
 	border: 1px solid #66CCFF;
+	margin-top: 26px;
 }
 
 body #search {
