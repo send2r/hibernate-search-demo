@@ -25,3 +25,7 @@ function showForm(){
 	var element = document.getElementById("uploadFile");
 	element.style.display = "block";
 }
+function hiddenForm(){
+	var element = document.getElementById("uploadFile");
+	element.style.display = "none";
+}

@@ -33,23 +33,21 @@
 <s:form name="home" action="delete-resume.htm" theme="simple">
 	<s:iterator value="#request.listFiles">
 		<div class="FileBox">
-			<img alt="image" width="50" height="50"/>
+			<img alt="image" width="50" height="70" src="<s:property value="imageIcon"/>"/>
 			<div class="Content">
-				<a class="Title">asjdflsdjflksdjfskfsls</a>
-				<p class="Text">content</p>
-				<a class="More">asjdflsdjflksdjfskfsls</a>
+				<a class="Title"><s:property value="fileName"/></a>
+				<p class="Text"><s:property value="sortContent"/></p>
+				<a class="More">Download</a>
 			</div>
 		</div>
 	</s:iterator>
 </s:form>
-<input type="button" value="UploadFile" onclick="showForm();"/>
+<div id="uploadControl">
+	<input type="button" value="UploadFile" onclick="showForm();"/>
+</div>
 <div id="uploadFile">
 	<div id="content">
-		<s:form action="doUpload.htm" method="POST" enctype="multipart/form-data" theme="simple">
-			<s:file name="upload" label="File"/>
-			<s:textfield name="caption" label="Caption"/>
-			<s:submit />
-		</s:form>
+		<s:include value="/files/uploadFile.jsp"/>
 	</div>
 </div>
 <belga:pager id="pager" cssClass="Pager" dataModel="pager"

@@ -21,18 +21,18 @@
 		<div id="header">
 			<div id="headerContent">
 				<s:if test="#session.currentUser != null">
-					<a href="<s:url value='/logout.htm' includeParams='none'/>">Logout</a>
+					<a href="<s:url value='/resume/logout.htm' includeParams='none'/>">Logout</a>
 				</s:if>
 				<s:else>
-					<a href="<s:url value='/login.htm' includeParams='none'/>">Login</a>
+					<a href="<s:url value='/resume/login.htm' includeParams='none'/>">Login</a>
 				</s:else>
 				<div id="navigation">
 					<ul>
-						<li class="Active">
-							<a href="<s:url value='/home.htm' includeParams='none'/>">Resume Management</a>
+						<li class="${navigationSection=="RESUME_SECTION" ? "Active" : ""}">
+							<a href="<s:url value='/resume/home.htm' includeParams='none'/>">Resume Management</a>
 						</li>
-						<li>
-							<a href="<s:url value='/file.htm' includeParams='none'/>">File Management</a>
+						<li class="${navigationSection=="FILES_SECTION" ? "Active" : ""}">
+							<a href="<s:url value='/file/file.htm' includeParams='none'/>">File Management</a>
 						</li>
 					</ul>
 				</div>
