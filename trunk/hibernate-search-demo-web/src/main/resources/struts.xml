@@ -8,19 +8,29 @@
 	<constant name="struts.action.extension" value="htm"/>
     <constant name="struts.custom.i18n.resources" value="messages" />
       
-    <package name="public" namespace="/" extends="struts-default">
+    <package name="public" namespace="/resume" extends="struts-default">
         <interceptors>
 	        <interceptor
 	            name="exception"
 	            class="com.opensymphony.xwork2.interceptor.ExceptionMappingInterceptor"/>
 	        <interceptor name="userAuthentication"
 						 class="demo.hibernatesearch.interceptor.UserAuthentication" />
-						 
+			<interceptor name="globalInterceptor"
+						 class="demo.hibernatesearch.interceptor.GlobalInterceptor" />			 
+	        
 	        <interceptor-stack name="hibernateDemoIntercep">
 	            <interceptor-ref name="exception" />
 	            <interceptor-ref name="defaultStack" />
 	            <interceptor-ref name="userAuthentication" />
+	            <interceptor-ref name="globalInterceptor" />
 	        </interceptor-stack>
+	        
+	        <interceptor-stack name="nonAuthorStack">
+	            <interceptor-ref name="exception" />
+	            <interceptor-ref name="defaultStack" />
+	            <interceptor-ref name="globalInterceptor" />
+	        </interceptor-stack>
+	        
 	    </interceptors>
 	    
 	    <default-interceptor-ref name="hibernateDemoIntercep" />
@@ -30,18 +40,18 @@
 		</global-results>
 		
         <action name="home" method="execute" class="demo.hibernatesearch.action.HomeAction">
-        	<interceptor-ref name="defaultStack" />
-            <result name="success">home.jsp</result>
+        	<interceptor-ref name="nonAuthorStack" />
+            <result name="success">/home.jsp</result>
         </action>
         
         <action name="login">
-       		<interceptor-ref name="defaultStack" />
+       		<interceptor-ref name="nonAuthorStack" />
 			<result name="none">/resume/error.jsp</result>
 			<result>/login.jsp</result>       			
 		</action>
 		
 		<action name="check-login" method="validateUser" class="demo.hibernatesearch.action.LoginAction">   
-			<interceptor-ref name="defaultStack" />     			 			
+			<interceptor-ref name="nonAuthorStack" />     			 			
       		<result name="none" type="redirect-action">login</result>       			
       		<result name="success" type="redirect-action">home</result>       			
 		</action>
@@ -70,22 +80,32 @@
 		</action>
 		
 		<action name="simple-search" class="demo.hibernatesearch.action.SimpleSearchAction">        			 			
-				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="nonAuthorStack" />
        			<result name="success">/home.jsp</result>       			
 		</action>
 	
 		<action name="config-search" method="initSearch" class="demo.hibernatesearch.action.AdvanceSearchAction">
-				<interceptor-ref name="defaultStack" />      			 			
+				<interceptor-ref name="nonAuthorStack" />      			 			
        			<result name="success">/advancedSearch.jsp</result>       			
 		</action>
 		<action name="advanced-search" class="demo.hibernatesearch.action.AdvanceSearchAction">
-				<interceptor-ref name="defaultStack" />      			 			
+				<interceptor-ref name="nonAuthorStack" />      			 			
        			<result name="success">/home.jsp</result>       			
 		</action>
 		<action name="logout" method="execute" class="demo.hibernatesearch.action.LogoutAction">
             <result name="success"  type="redirect-action">home</result>
         </action>
         
+    </package>
+    
+    <package name="file" namespace="/file" extends="public">
+	   	  <default-interceptor-ref name="nonAuthorStack" />
+	   	  <action name="file" method="execute" class="demo.hibernatesearch.action.HomeFilesAction">
+	           <result name="success">/files.jsp</result>
+	       </action>
+	       <action name="doUpload" method="execute" class="demo.hibernatesearch.action.FileUploadAction">
+	           <result name="success" type="redirect-action">file</result>
+	       </action>
     </package>
 
 </struts>
