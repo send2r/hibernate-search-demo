@@ -4,7 +4,7 @@
 </head>
 <body>
 <div id="page">
-        <% response.sendRedirect(request.getContextPath() +"/home.htm"); %>
+        <% response.sendRedirect(request.getContextPath() +"/resume/home.htm"); %>
 </div>
 </body>
 </html>
