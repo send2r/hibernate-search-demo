@@ -5,4 +5,5 @@ public class Constants {
 	public static String TEMPLATE_CONFIG ="templateConfig";
 	public static int PAGE_SIZE = 2;
 	public static String CURRENT_USER = "currentUser";
+	public static String NAVIGATION = "navigationSection";
 }
