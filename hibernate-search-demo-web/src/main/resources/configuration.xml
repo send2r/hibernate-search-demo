@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <navigation-setting>
+        <navigation-mapping name="RESUME_SECTION" value=".*/resume/.*"/>
+        <navigation-mapping name="FILES_SECTION" value=".*/file/.*"/>
+    </navigation-setting>
+    <upload-folder value="d:/upload"/>
+    <page-size value="2"/>
+</configuration>
+
+
