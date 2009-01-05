@@ -29,7 +29,7 @@ public abstract class SearchAction implements Preparable, SessionAware,
 	private String page;
 	private String query;
 
-	public abstract IList<FileUploadDTO> search(int pageIndex, int pageSize);
+	public abstract IList<FileUploadDTO> search(int pageIndex, int pageSize)  throws Exception;
 
 	public void prepare() throws Exception {
 	}
@@ -52,7 +52,7 @@ public abstract class SearchAction implements Preparable, SessionAware,
 		pagerModel.setTotalItems(searchList.getTotalItemCount());
 		request.put("searchString", searchList.getSearchString());
 		searchString = searchList.getSearchString();
-		request.put("listResume", searchList);
+		request.put("listFiles", searchList);
 		request.put("pager", pagerModel);
 
 		return Action.SUCCESS;

@@ -10,14 +10,12 @@ import demo.hibernatesearch.util.IList;
 public class SimpleSearchAction extends SearchAction {
 
 	@Override
-	public IList<FileUploadDTO> search(int pageIndex, int pageSize) {
-		User currentUser = (User)session.get(Constants.CURRENT_USER);
-		IList<Resume> listResume = null;
-		if(currentUser == null) {
-			return null;
-		} else {
-			return null;
-		}
-
+	public IList<FileUploadDTO> search(int pageIndex, int pageSize) throws Exception {
+		
+		IList<FileUploadDTO> result = fileManager.simpleSearch(pageIndex > 0
+				? pageIndex - 1
+						: pageIndex, Constants.PAGE_SIZE, searchString);
+		
+		return result;
 	}
 }
