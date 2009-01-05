@@ -25,6 +25,7 @@ public class ManagerResource {
 	private static final String CONFIG_NAME = "configuration.xml";
 	private static Hashtable<String, String> navigations;
 	private static String uploadFolder;
+	private static String fileIndexFolder;
 	
 	private static Log log = LogFactory.getLog(ManagerResource.class);
 
@@ -60,6 +61,12 @@ public class ManagerResource {
 		if(uploadFolderList.getLength() > 0){
 			Node uploadFolderTemp = uploadFolderList.item(0);
 			uploadFolder = getNodeValue(uploadFolderTemp,"./@value");
+		}
+		
+		NodeList indexFolderList = XPathAPI.selectNodeList(document,"/configuration/upload-folder");
+		if(indexFolderList.getLength() > 0){
+			Node indexFolderTemp = indexFolderList.item(0);
+			fileIndexFolder = getNodeValue(indexFolderTemp,"./@value");
 		}
 		
 		NodeList pageSizeList = XPathAPI.selectNodeList(document,"/configuration/page-size");
@@ -126,6 +133,15 @@ public class ManagerResource {
 	public static void setUploadFolder(String uploadFolder) {
 		ManagerResource.uploadFolder = uploadFolder;
 	}
+	
+	public static String getFileIndexFolder() {
+		return fileIndexFolder;
+	}
+
+	public static void setFileIndexFolder(String fileIndexFolder) {
+		ManagerResource.fileIndexFolder = fileIndexFolder;
+	}
+	
 	public static String getImageIcon(String mineType){
 		String result = "../images/filesicon/";
 		if("application/pdf".equalsIgnoreCase(mineType)){
