@@ -8,12 +8,15 @@ import org.apache.commons.io.FileUtils;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.Term;
 import org.springframework.stereotype.Service;
 
 import demo.hibernatesearch.application.ManagerResource;
 import demo.hibernatesearch.model.FileUploadDTO;
 import demo.hibernatesearch.service.FileManager;
+import demo.hibernatesearch.util.Utils;
 import demo.pyco.handler.FileHandler;
 import demo.pyco.handler.FileHandlerException;
 
@@ -25,7 +28,8 @@ public class FileManagerImpl implements FileManager {
 	public void indexFile(FileUploadDTO file) throws Exception {
 
 		saveFile(file);
-		index(file);
+		file.setDocId(Utils.getDocumentId());
+		addIndex(file);
 	}
 
 	public File saveFile(FileUploadDTO file) throws Exception {
@@ -38,12 +42,13 @@ public class FileManagerImpl implements FileManager {
 		return theFile;
 	}
 
-	public void index(FileUploadDTO fileDTO) throws FileHandlerException,
+	public void addIndex(FileUploadDTO fileDTO) throws FileHandlerException,
 			FileNotFoundException, IOException {
 
 		String indexPath = ManagerResource.getFileIndexFolder();
 		fileHandler = ManagerResource.getFileHandler();
-		IndexWriter writer = new IndexWriter(indexPath, new StandardAnalyzer(), false);
+		IndexWriter writer = new IndexWriter(indexPath, new StandardAnalyzer(),
+				false);
 		File file = fileDTO.getFileUpload();
 		if (file.canRead()) {
 
@@ -52,8 +57,12 @@ public class FileManagerImpl implements FileManager {
 				Document doc = fileHandler.getDocument(file);
 				if (doc != null) {
 					String fileName = file.getName();
+					String docId = fileDTO.getDocId();
 					doc.add(new Field("filename", fileName, Field.Store.YES,
 							Field.Index.UN_TOKENIZED));
+					doc.add(new Field("id", docId, Field.Store.YES,
+							Field.Index.UN_TOKENIZED));
+
 					writer.addDocument(doc);
 				} else {
 					System.err.println("Cannot handle "
@@ -66,6 +75,15 @@ public class FileManagerImpl implements FileManager {
 			writer.optimize();
 			writer.close();
 		}
+	}
+
+	public void deleteIndex(String docId) throws FileHandlerException,
+			FileNotFoundException, IOException {
+
+		String indexPath = ManagerResource.getFileIndexFolder();
+		IndexReader reader = IndexReader.open(indexPath);
+		reader.deleteDocuments(new Term("city", "Amsterdam"));
+		reader.close();
 	}
 
 }
