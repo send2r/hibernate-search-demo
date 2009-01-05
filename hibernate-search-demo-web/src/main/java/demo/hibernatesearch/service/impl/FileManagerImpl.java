@@ -82,7 +82,7 @@ public class FileManagerImpl implements FileManager {
 
 		String indexPath = ManagerResource.getFileIndexFolder();
 		IndexReader reader = IndexReader.open(indexPath);
-		reader.deleteDocuments(new Term("city", "Amsterdam"));
+		reader.deleteDocuments(new Term("id", docId));
 		reader.close();
 	}
 
