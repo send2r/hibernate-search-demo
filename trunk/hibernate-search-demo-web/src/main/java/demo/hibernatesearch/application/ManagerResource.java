@@ -140,6 +140,8 @@ public class ManagerResource {
 			result += "JPG.png";
 		}else if("image/gif".equalsIgnoreCase(mineType)){
 			result += "GIF.png";
+		}else {
+			result += "UNKNOWN.png";
 		}
 		return result;
 	}
