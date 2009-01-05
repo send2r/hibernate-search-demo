@@ -7,7 +7,11 @@
 package demo.hibernatesearch.util;
 
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Formatter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -140,4 +144,11 @@ public class Utils {
 		return tmp.toString();
 	}
 	
+	public static String getDocumentId() {
+		
+		String format = "yyyyMMddHHmmssSS";
+		DateFormat df = new SimpleDateFormat(format);
+		String dateString = df.format(new Date());
+		return dateString;
+	}
 }
