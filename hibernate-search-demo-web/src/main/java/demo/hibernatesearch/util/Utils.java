@@ -151,4 +151,12 @@ public class Utils {
 		String dateString = df.format(new Date());
 		return dateString;
 	}
+	
+	public static String getDateString() {
+		
+		String format = "yyyyMMdd";
+		DateFormat df = new SimpleDateFormat(format);
+		String dateString = df.format(new Date());
+		return dateString;
+	}
 }
