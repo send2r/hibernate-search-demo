@@ -30,18 +30,20 @@
 	</form>
 </div>
 
-<s:form name="home" action="delete-resume.htm" theme="simple">
-	<s:iterator value="#request.listFiles">
-		<div class="FileBox">
-			<img alt="image" width="50" height="70" src="<s:property value="imageIcon"/>"/>
-			<div class="Content">
-				<a class="Title"><s:property value="fileName"/></a>
-				<p class="Text"><s:property value="sortContent"/></p>
-				<a class="More">Download</a>
-			</div>
+<s:iterator value="#request.listFiles">
+	<div class="FileBox">
+		<img alt="image" width="50" height="70" src="<s:property value="imageIcon"/>"/>
+		<div class="Content">
+			<s:hidden name="docId" value="docId"/>
+			<a class="Title"><s:property value="fileName"/></a>
+			<p class="Text"><s:property value="sortContent"/></p>
+			<span>
+				<a class="More" href="<s:url value="/file/download-file.htm?docId=%{docId}" includeParams="none"/>">Download</a>
+				<a class="More" href="<s:url value="/file/delete-file.htm?docId=%{docId}" includeParams="none"/>">Delete</a>
+			</span>
 		</div>
-	</s:iterator>
-</s:form>
+	</div>
+</s:iterator>
 <div id="uploadControl">
 	<input type="button" value="UploadFile" onclick="showForm();"/>
 </div>

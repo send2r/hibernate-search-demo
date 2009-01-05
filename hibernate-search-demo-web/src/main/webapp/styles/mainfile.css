@@ -27,7 +27,8 @@ div.FileBox div.Content p.Text{
 
 div.FileBox div.Content a.More{
 	font-style: italic; 
-	
+	font-size: 11px;
+	margin-right: 10px;
 }
 
 div#uploadFile {
@@ -43,6 +44,7 @@ div#uploadFile {
 }
 div#uploadControl{
 	text-align: right;
+	margin-right: 5px;
 }
 div#uploadFile div#content{
 	width: 470px;
