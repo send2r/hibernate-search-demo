@@ -1,7 +1,5 @@
 package demo.hibernatesearch.action.file;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
@@ -14,13 +12,14 @@ import com.opensymphony.xwork2.Preparable;
 
 import demo.hibernatesearch.application.Constants;
 import demo.hibernatesearch.model.FileUploadDTO;
-import demo.hibernatesearch.service.ResumeManager;
+import demo.hibernatesearch.service.FileManager;
 import demo.hibernatesearch.taglib.pager.PagerModel;
+import demo.hibernatesearch.util.IList;
 
 public class HomeFilesAction implements Preparable, SessionAware, RequestAware {
 
 	@Autowired
-	private ResumeManager resumeManager;
+	private FileManager fileManager;
 	private Map session;
 	private Map request;
 	private String page;
@@ -42,29 +41,40 @@ public class HomeFilesAction implements Preparable, SessionAware, RequestAware {
 		return request;
 	}
 
-	public ResumeManager getResumeManager() {
-		return resumeManager;
+
+
+	public FileManager getFileManager() {
+		return fileManager;
 	}
 
-	public void setResumeManager(ResumeManager resumeManager) {
-		this.resumeManager = resumeManager;
+	public void setFileManager(FileManager fileManager) {
+		this.fileManager = fileManager;
 	}
 
 	public String execute() throws Exception {
-		List<FileUploadDTO> result = new ArrayList<FileUploadDTO>();
+		int pageIndex;
+		try{
+			pageIndex = Integer.valueOf(this.page);
+		}catch(Exception e){
+			pageIndex = 0;
+		}
+		IList<FileUploadDTO> result = fileManager.simpleSearch(pageIndex > 0
+				? pageIndex - 1
+						: pageIndex, Constants.PAGE_SIZE, "");
 		
-		for(int i = 0; i < 5; i++){
+		/*for(int i = 0; i < 5; i++){
 			FileUploadDTO fileUpload  = new FileUploadDTO();
 			fileUpload.setFileName("File " + (i+1));
 			fileUpload.setMineType("image/jpg");
 			fileUpload.setSortContent("The file upload interceptor also does the validation and adds errors, these error messages are stored in the struts-messsages.properties file. The values of the messages can be overridden by providing the text for the following keys");
 			result.add(fileUpload);
-		}
+		}*/
+		
 		PagerModel pagerModel = (PagerModel)ServletActionContext.getServletContext().getAttribute(Constants.PAGER_MODEL);
 		pagerModel.setPageSize(Constants.PAGE_SIZE);
 		pagerModel.setBaseLink("file.htm");
-		pagerModel.setPageIndex(0);
-		pagerModel.setTotalItems(5);
+		pagerModel.setPageIndex(pageIndex);
+		pagerModel.setTotalItems(result.getTotalItemCount());
 		request.put("pager", pagerModel);
 		request.put("listFiles",result);
 		return Action.SUCCESS;
