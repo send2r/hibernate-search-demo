@@ -24,7 +24,8 @@ public class HomeFilesAction implements Preparable, SessionAware, RequestAware {
 	private Map session;
 	private Map request;
 	private String page;
-
+	private String docId;
+	
 	public String getPage() {
 		return page;
 	}
@@ -69,6 +70,14 @@ public class HomeFilesAction implements Preparable, SessionAware, RequestAware {
 		return Action.SUCCESS;
 	}
 
+	public String downloadFile() throws Exception{
+		return Action.NONE;
+	}
+	
+	public String deleteFile() throws Exception{
+		return Action.SUCCESS;
+	}
+	
 	public void prepare() throws Exception {
 		// TODO Auto-generated method stub
 
@@ -82,6 +91,14 @@ public class HomeFilesAction implements Preparable, SessionAware, RequestAware {
 	public void setRequest(Map request) {
 		this.request = request;
 
+	}
+
+	public String getDocId() {
+		return docId;
+	}
+
+	public void setDocId(String docId) {
+		this.docId = docId;
 	}
 
 }
