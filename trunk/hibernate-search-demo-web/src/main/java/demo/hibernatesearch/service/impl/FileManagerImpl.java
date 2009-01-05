@@ -120,18 +120,19 @@ public class FileManagerImpl implements FileManager {
 			query = parser.parse(searchString);
 		}
 		
-		Hits hits = is.search(query,new Sort("id"));
+		Hits hits = is.search(query);
 		int resultSize = hits.length();
-		int firstResult = resultSize*pageIndex;
+		int firstResult = pageIndex*pageSize;
 		int lastResult = firstResult + pageSize;
-	    for (int i = firstResult; i <= lastResult; i++) {
-	      Document doc = hits.doc(i);
-	      FileUploadDTO file = new FileUploadDTO();
-	      file.setDocId(doc.get("id"));
-	      file.setFileName(doc.get("filename"));
-	      file.setContent(doc.getBinaryValue("body"));
-	      result.add(file);
-	    }
+		for (int i = firstResult; i < lastResult && i < resultSize; i++) {
+		      Document doc = hits.doc(i);
+		      FileUploadDTO file = new FileUploadDTO();
+		      file.setDocId(doc.get("id"));
+		      file.setFileName(doc.get("filename"));
+		      file.setContent(doc.getBinaryValue("body"));
+		      result.add(file);
+		}
+				    
 
 		pageList = new ListImpl(resultSize, pageIndex, pageSize);
 		pageList.setList(result);
