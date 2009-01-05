@@ -63,7 +63,7 @@ public class ManagerResource {
 			uploadFolder = getNodeValue(uploadFolderTemp,"./@value");
 		}
 		
-		NodeList indexFolderList = XPathAPI.selectNodeList(document,"/configuration/upload-folder");
+		NodeList indexFolderList = XPathAPI.selectNodeList(document,"/configuration/file-index-folder");
 		if(indexFolderList.getLength() > 0){
 			Node indexFolderTemp = indexFolderList.item(0);
 			fileIndexFolder = getNodeValue(indexFolderTemp,"./@value");
