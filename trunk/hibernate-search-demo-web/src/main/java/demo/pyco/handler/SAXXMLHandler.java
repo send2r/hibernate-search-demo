@@ -13,6 +13,7 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.Fieldable;
 
+import demo.hibernatesearch.application.Constants;
 import demo.pyco.handler.DocumentHandler;
 import demo.pyco.handler.DocumentHandlerException;
 
@@ -59,6 +60,7 @@ public class SAXXMLHandler
 
   public void startDocument() {
     doc = new Document();
+    doc.add(new Field("docType", Constants.XML, Field.Store.YES, Field.Index.UN_TOKENIZED));
   }
 
   public void startElement(String uri, String localName,
@@ -81,27 +83,16 @@ public class SAXXMLHandler
 
   public void endElement(String uri, String localName, String qName)
     throws SAXException {
-    if (qName.equals("address-book")) {
-      return;
-    }
-    else if (qName.equals("contact")) {
+
+    if (!"".equals(qName)) {
       Iterator iter = attributeMap.keySet().iterator();
       while (iter.hasNext()) {
         String attName = (String) iter.next();
         String attValue = (String) attributeMap.get(attName);
-        doc.add(new Field(attName, attValue, Field.Store.YES, Field.Index.UN_TOKENIZED));
+        doc.add(new Field("body", attValue, Field.Store.YES, Field.Index.UN_TOKENIZED));
       }
-    }
-    else {
-      doc.add(new Field(qName, elementBuffer.toString(), Field.Store.YES, Field.Index.UN_TOKENIZED));
+      doc.add(new Field("body", elementBuffer.toString(), Field.Store.YES, Field.Index.UN_TOKENIZED));
     }
   }
 
-  public static void main(String args[]) throws Exception {
-
-    SAXXMLHandler handler = new SAXXMLHandler();
-    String fileName = "bin\\demo\\pyco\\handler\\xml\\books.xml";
-    Document doc = handler.getDocument(new FileInputStream(new File(fileName)));
-    System.out.println(doc);
-  }
 }

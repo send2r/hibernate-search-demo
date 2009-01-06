@@ -4,6 +4,7 @@ package demo.pyco.handler;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 
+import demo.hibernatesearch.application.Constants;
 import demo.pyco.handler.DocumentHandler;
 import demo.pyco.handler.DocumentHandlerException;
 
@@ -37,6 +38,7 @@ public class PlainTextHandler implements DocumentHandler {
 
     if (!bodyText.equals("")) {
       Document doc = new Document();
+      doc.add(new Field("docType", Constants.TEXT, Field.Store.YES, Field.Index.UN_TOKENIZED));
       doc.add(new Field("body", bodyText, Field.Store.YES, Field.Index.TOKENIZED));
       return doc;
     }
@@ -44,10 +46,4 @@ public class PlainTextHandler implements DocumentHandler {
     return null;
   }
 
-  public static void main(String[] args) throws Exception {
-    PlainTextHandler handler = new PlainTextHandler();
-    Document doc = handler.getDocument(
-      new FileInputStream(new File(args[0])));
-    System.out.println(doc);
-  }
 }
