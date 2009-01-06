@@ -55,9 +55,11 @@ public interface ResumeManager {
 	
 	IList<Resume> getAllResum(final int pageIndex, final int pageSize);
 	
+	public IList<Resume> getAllResumAndSort(final int pageIndex, final int pageSize, final String sortField, final boolean reverse) ;
+	
 	public User getUserByEmail(String emailAddress);
 	
-	public IList<Resume> simpleSearch(final int pageIndex, final int pageSize,final String searchString);
+	public IList<Resume> simpleSearch(final int pageIndex, final int pageSize,final String searchString, final String sortField, final boolean reverse);
 	
 	public IList<Resume> simpleSearchWithEmail(final int pageIndex, final int pageSize,final String searchString, final String email);
 	

@@ -37,18 +37,18 @@ public class User implements Serializable {
 	@DocumentId
 	private Long id;
 
-	@org.hibernate.annotations.Index(name = "firstNameIndex")
+	//@org.hibernate.annotations.Index(name = "firstNameIndex")
 	@Field(index = Index.UN_TOKENIZED, store = Store.YES)
 	private String firstName;
 
-	@org.hibernate.annotations.Index(name = "lastNameIndex")
+	//@org.hibernate.annotations.Index(name = "lastNameIndex")
 	@Field(index = Index.UN_TOKENIZED, store = Store.YES)
 	private String lastName;
 
 	@Field(index = Index.UN_TOKENIZED, store = Store.YES)
 	private String middleName;
 
-	@org.hibernate.annotations.Index(name = "emailAddressIndex")
+	//@org.hibernate.annotations.Index(name = "emailAddressIndex")
 	@NaturalId
 	@Field(index = Index.UN_TOKENIZED, store = Store.YES)
 	private String emailAddress;

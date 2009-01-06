@@ -24,6 +24,8 @@ import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.PhraseQuery;
 import org.apache.lucene.search.RangeQuery;
+import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.WildcardQuery;
 import org.hibernate.CacheMode;
@@ -487,7 +489,24 @@ public class ResumeDaoHibernate implements ResumeDao {
 				FullTextQuery fq = fullTextEntityManager.createFullTextQuery (
 						new WildcardQuery(new Term("id","*")), Resume.class);
 				fq.setFirstResult(pageIndex*pageSize).setMaxResults(pageSize);
-				
+				IList pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
+				pageList.setList(fq.getResultList());
+				return pageList;
+			}
+		});
+		return (IList<Resume>) results;
+	}
+	
+public IList<Resume> getAllResumAndSort(final int pageIndex, final int pageSize, final String sortField, final boolean reverse) {
+		
+		Object results = getJpaTemplate().execute(new JpaCallback() {
+			public Object doInJpa(EntityManager em) throws PersistenceException {
+				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
+				FullTextQuery fq = fullTextEntityManager.createFullTextQuery (
+						new WildcardQuery(new Term("id","*")), Resume.class);
+				fq.setFirstResult(pageIndex*pageSize).setMaxResults(pageSize);
+				Sort sort = new Sort(new SortField(sortField, reverse));
+				fq.setSort(sort);
 				IList pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
 				pageList.setList(fq.getResultList());
 				return pageList;
@@ -507,7 +526,7 @@ public class ResumeDaoHibernate implements ResumeDao {
 		return result;		
 	}
 	
-	public IList<Resume> simpleSearch(final int pageIndex, final int pageSize,final String searchString) {
+	public IList<Resume> simpleSearch(final int pageIndex, final int pageSize,final String searchString, final String sortField, final boolean reverse) {
 		
 		Object results = getJpaTemplate().execute(new JpaCallback() {
 			public Object doInJpa(EntityManager em) throws PersistenceException {
@@ -526,6 +545,8 @@ public class ResumeDaoHibernate implements ResumeDao {
 					BooleanQuery finalQuery = new BooleanQuery();
 					finalQuery.add(query, BooleanClause.Occur.MUST);
 					FullTextQuery fq = fullTextEntityManager.createFullTextQuery(finalQuery, Resume.class);
+					Sort sort = new Sort(new SortField(sortField, reverse));
+					fq.setSort(sort);
 					fq.setFirstResult(pageIndex*pageSize).setMaxResults(pageSize);
 					pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
 					pageList.setList(fq.getResultList());

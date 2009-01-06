@@ -144,13 +144,17 @@ public class ResumeManagerImpl implements ResumeManager {
 		return resumeDao.getAllResum(pageIndex, pageSize);
 	}
 	
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public IList<Resume> getAllResumAndSort(final int pageIndex, final int pageSize, final String sortField, final boolean reverse) {
+		return resumeDao.getAllResumAndSort(pageIndex, pageSize, sortField, reverse);
+	}
 	public User getUserByEmail(String emailAddress) {
 		
 		return resumeDao.getUserByEmail(emailAddress);
 	}
 	
-	public IList<Resume> simpleSearch(final int pageIndex, final int pageSize,final String searchString) {
-		return resumeDao.simpleSearch(pageIndex, pageSize, searchString);
+	public IList<Resume> simpleSearch(final int pageIndex, final int pageSize,final String searchString, final String sortField, final boolean reverse){
+		return resumeDao.simpleSearch(pageIndex, pageSize, searchString, sortField, reverse);
 	}
 	
 	public IList<Resume> simpleSearchWithEmail(final int pageIndex, final int pageSize,final String searchString, final String email) {

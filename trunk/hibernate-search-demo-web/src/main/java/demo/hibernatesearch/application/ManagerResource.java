@@ -167,19 +167,20 @@ public class ManagerResource {
 		ManagerResource.fileIndexFolder = fileIndexFolder;
 	}
 	
-	public static String getImageIcon(String mineType){
+	public static String getImageIcon(String fileName){
 		String result = "../images/filesicon/";
-		if("application/pdf".equalsIgnoreCase(mineType)){
+		String mineType = fileName.substring(fileName.lastIndexOf(".") + 1);
+		if("pdf".equalsIgnoreCase(mineType)){
 			result += "PDF.png";
-		}else if("application/vnd.ms-word".equalsIgnoreCase(mineType)){
+		}else if("doc".equalsIgnoreCase(mineType)){
 			result += "DOC.png";
-		}else if("text/html".equalsIgnoreCase(mineType)){
+		}else if("html".equalsIgnoreCase(mineType)){
 			result += "HTML.png";
-		}else if("application/rtf".equalsIgnoreCase(mineType)){
+		}else if("rtf".equalsIgnoreCase(mineType)){
 			result += "RTF.png";
-		}else if("image/jpeg".equalsIgnoreCase(mineType) || "image/jpg".equalsIgnoreCase(mineType)){
+		}else if("jpeg".equalsIgnoreCase(mineType) || "jpg".equalsIgnoreCase(mineType)){
 			result += "JPG.png";
-		}else if("image/gif".equalsIgnoreCase(mineType)){
+		}else if("gif".equalsIgnoreCase(mineType)){
 			result += "GIF.png";
 		}else {
 			result += "UNKNOWN.png";
