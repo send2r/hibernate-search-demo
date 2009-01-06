@@ -6,6 +6,7 @@ import org.apache.lucene.document.Field;
 
 import org.apache.poi.hdf.extractor.WordDocument;
 
+import demo.hibernatesearch.application.Constants;
 import demo.pyco.handler.DocumentHandler;
 import demo.pyco.handler.DocumentHandlerException;
 
@@ -36,16 +37,11 @@ public class POIWordDocHandler implements DocumentHandler {
 
     if ((bodyText != null) && (bodyText.trim().length() > 0)) {
       Document doc = new Document();
+      doc.add(new Field("docType", Constants.DOC, Field.Store.YES,Field.Index.UN_TOKENIZED));
       doc.add(new Field("body", bodyText, Field.Store.YES,Field.Index.TOKENIZED));
       return doc;
     }
     return null;
   }
 
-  public static void main(String[] args) throws Exception {
-    POIWordDocHandler handler = new POIWordDocHandler();
-    Document doc = handler.getDocument(
-      new FileInputStream(new File(args[0])));
-    System.out.println(doc);
-  }
 }

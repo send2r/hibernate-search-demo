@@ -177,6 +177,11 @@ public class FileManagerImpl implements FileManager {
 		
 		
 		BooleanQuery finalQuery = new BooleanQuery();
+		String docType = searchDTO.getDocType();
+		if (!"all".equals(docType)) {
+			finalQuery.add(new TermQuery(new Term("docType",docType)), BooleanClause.Occur.MUST);
+		}
+		
 		if (searchDTO.getWordPhrase() != null && !"".equals(searchDTO.getWordPhrase().trim())) {
 			
 			String[] phrase = searchDTO.getWordPhrase().split(" ");
@@ -213,8 +218,7 @@ public class FileManagerImpl implements FileManager {
 				finalQuery.add(new TermQuery(new Term(field,string)), BooleanClause.Occur.MUST_NOT);
 			}
 		}
-		
-		
+				
 		Term from = null, to = null;
 		if (searchDTO.getFromDate() != null && !"".equals(searchDTO.getFromDate())) {
 			from = new Term("lastUpdated",searchDTO.getFromDate().replaceAll("-", ""));

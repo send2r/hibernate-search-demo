@@ -18,6 +18,7 @@ import org.pdfbox.exceptions.InvalidPasswordException;
 import org.pdfbox.exceptions.CryptographyException;
 import org.pdfbox.util.PDFTextStripper;
 
+import demo.hibernatesearch.application.Constants;
 import demo.pyco.handler.DocumentHandler;
 import demo.pyco.handler.DocumentHandlerException;
 
@@ -77,6 +78,7 @@ public class PDFBoxPDFHandler implements DocumentHandler {
     }
 
     Document doc = new Document();
+    doc.add(new Field("docType", Constants.PDF,Field.Store.YES,Field.Index.UN_TOKENIZED));
     if (docText != null) {
       doc.add(new Field("body", docText,Field.Store.YES,Field.Index.TOKENIZED));
     }
@@ -144,10 +146,4 @@ public class PDFBoxPDFHandler implements DocumentHandler {
     }
   }
 
-  public static void main(String[] args) throws Exception {
-    PDFBoxPDFHandler handler = new PDFBoxPDFHandler();
-    Document doc =
-      handler.getDocument(new FileInputStream(new File(args[0])));
-    System.out.println(doc);
-  }
 }

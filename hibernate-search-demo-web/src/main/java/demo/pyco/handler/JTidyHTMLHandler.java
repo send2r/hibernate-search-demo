@@ -9,6 +9,7 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.w3c.tidy.Tidy;
 
+import demo.hibernatesearch.application.Constants;
 import demo.pyco.handler.DocumentHandler;
 import demo.pyco.handler.DocumentHandlerException;
 
@@ -32,12 +33,9 @@ public class JTidyHTMLHandler implements DocumentHandler {
 
     String title = getTitle(rawDoc);
     String body = getBody(rawDoc);
-    if ((title != null) && (!title.equals(""))) {
-      doc.add(new Field("title", title, Field.Store.YES, Field.Index.TOKENIZED));
-      
-    }
+    doc.add(new Field("docType", Constants.HTML, Field.Store.YES, Field.Index.UN_TOKENIZED));
     if ((body != null) && (!body.equals(""))) {
-      doc.add(new Field("body", body, Field.Store.YES, Field.Index.TOKENIZED));
+      doc.add(new Field("body", title + body, Field.Store.YES, Field.Index.TOKENIZED));
     }
 
     return doc;
@@ -110,10 +108,4 @@ public class JTidyHTMLHandler implements DocumentHandler {
     return sb.toString();
   }
 
-  public static void main(String args[]) throws Exception {
-    JTidyHTMLHandler handler = new JTidyHTMLHandler();
-    org.apache.lucene.document.Document doc = handler.getDocument(
-      new FileInputStream(new File(args[0])));
-    System.out.println(doc);
-  }
 }
