@@ -18,6 +18,8 @@
 
 <div id="search">
 	<form action="simple-search.htm" method="get" >
+		<s:hidden name="sortField" value="%{sortField}"/>
+		<s:hidden name="order" value="%{order}"/>
 		<div id="simpleSearch">
 			<span class="Link">
 				<a href="<s:url value="config-search.htm" includeParams="none"/>" ><img src="<s:url value="/images/advancedsearch.gif" includeParams="none"/>" alt="" /></a>
@@ -35,9 +37,88 @@
 	<tr>
 		<th class="Id"><s:text name="home.table.id" /></th>
 		<th class="UserName"><s:text name="home.table.username" /></th>
-		<th class="Email"><s:text name="home.table.email" /></th>
-		<th class="Summary"><s:text name="home.table.summary" /></th>
-		<th class="CreatedDate"><s:text name="home.table.creation-date" /></th>
+		<th class="Email">
+			<s:if test="%{sortField == 'Email'}">
+				<s:if test="%{order == 'ASC'}">
+					<s:url id="email" >
+						<s:param name="order">DESC</s:param>
+						<s:param name="sortField">Email</s:param>
+					</s:url>
+					<a href="${email}"><s:text name="home.table.email" /></a>
+					<img src="<s:url value="/images/up.png" includeParams="none"/>"/>
+				</s:if>
+				<s:else>
+					<s:url id="email" >
+						<s:param name="order">ASC</s:param>
+						<s:param name="sortField">Email</s:param>
+					</s:url>
+					<a href="${email}"><s:text name="home.table.email" /></a>
+					<img src="<s:url value="/images/down.png" includeParams="none"/>"/>
+				</s:else>
+			</s:if>
+			<s:else>
+				<s:url id="email" >
+					<s:param name="order">ASC</s:param>
+					<s:param name="sortField">Email</s:param>
+				</s:url>
+				<a href="${email}"><s:text name="home.table.email" /></a>
+			</s:else>
+		</th>
+		<th class="Summary">
+			<s:if test="%{sortField == 'Summary'}">
+				<s:if test="%{order == 'ASC'}">
+					<s:url id="summary" >
+						<s:param name="order">DESC</s:param>
+						<s:param name="sortField">Summary</s:param>
+					</s:url>
+					<a href="${summary}"><s:text name="home.table.summary" /></a>
+					<img src="<s:url value="/images/up.png" includeParams="none"/>"/>
+				</s:if>
+				<s:else>
+					<s:url id="summary" >
+						<s:param name="order">ASC</s:param>
+						<s:param name="sortField">Summary</s:param>
+					</s:url>
+					<a href="${summary}"><s:text name="home.table.summary" /></a>
+					<img src="<s:url value="/images/down.png" includeParams="none"/>"/>
+				</s:else>
+			</s:if>
+			<s:else>
+				<s:url id="summary" >
+					<s:param name="order">ASC</s:param>
+					<s:param name="sortField">Summary</s:param>
+				</s:url>
+				<a href="${summary}"><s:text name="home.table.summary" /></a>
+			</s:else>
+			
+		</th>
+		<th class="CreatedDate">
+			<s:if test="%{sortField == 'CreateDate'}">
+				<s:if test="%{order == 'ASC'}">
+					<s:url id="createdate" >
+						<s:param name="order">DESC</s:param>
+						<s:param name="sortField">CreateDate</s:param>
+					</s:url>
+					<a href="${createdate}"><s:text name="home.table.creation-date" /></a>
+					<img src="<s:url value="/images/up.png" includeParams="none"/>"/>
+				</s:if>
+				<s:else>
+					<s:url id="createdate" >
+						<s:param name="order">ASC</s:param>
+						<s:param name="sortField">CreateDate</s:param>
+					</s:url>
+					<a href="${createdate}"><s:text name="home.table.creation-date" /></a>
+					<img src="<s:url value="/images/down.png" includeParams="none"/>"/>
+				</s:else>
+			</s:if>
+			<s:else>
+				<s:url id="createdate" >
+					<s:param name="order">ASC</s:param>
+					<s:param name="sortField">CreateDate</s:param>
+				</s:url>
+				<a href="${createdate}"><s:text name="home.table.creation-date" /></a>
+			</s:else>
+		</th>
 		<s:if test="#session.currentUser != null">
 			<th class="Delete"><input type="checkbox" onclick="checkAll(this, document.home.listDelete);"/></th>
 		</s:if>
@@ -46,7 +127,9 @@
 		<tr>
 			<td class="Id"><s:property value="id" /></td>
 			<td class="UserName"><s:property value="applicant.fullName" /></td>
-			<td class="Email"><s:property value="applicant.emailAddress" /></td>
+			<td class="Email">
+				<s:property value="applicant.emailAddress" />
+			</td>
 			<s:if test="#session.currentUser != null">
 				<td class="Summary"><div><a href="<s:url value="edit-resume.htm?id=%{id}" />"><s:property value="summary" escape="true" /></a></div></td>
 			</s:if>

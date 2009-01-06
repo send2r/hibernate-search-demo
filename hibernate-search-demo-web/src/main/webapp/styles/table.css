@@ -6,9 +6,6 @@
 table.ItemList .Image {
     text-align: center;
 }
-.ItemList img {
-	padding: 2px;
-}
 
 table.ItemList {
     width: 100%;
@@ -108,7 +105,7 @@ table.ItemList th.Delete {
 	width: 50px;
 }
 table.ItemList th.CreatedDate {
-	width: 100px;
+	width: 120px;
 }
 
 table.ItemList td.Id {
