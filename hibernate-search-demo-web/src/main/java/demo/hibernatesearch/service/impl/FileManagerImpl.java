@@ -3,7 +3,6 @@ package demo.hibernatesearch.service.impl;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,18 +16,14 @@ import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
 import org.apache.lucene.queryParser.ParseException;
-import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.PhraseQuery;
-import org.apache.lucene.search.Query;
 import org.apache.lucene.search.RangeQuery;
-import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.WildcardQuery;
-import org.hibernate.search.jpa.FullTextQuery;
 import org.springframework.stereotype.Service;
 
 import demo.hibernatesearch.application.ManagerResource;
@@ -52,12 +47,11 @@ public class FileManagerImpl implements FileManager {
 	public void indexFile(FileUploadDTO file) throws Exception {
 
 		saveFile(file);
-		file.setDocId(Utils.getDocumentId());
 		addIndex(file);
 	}
 
 	public File saveFile(FileUploadDTO file) throws Exception {
-		// TODO Auto-generated method stub
+		
 		String fullFileName = ManagerResource.getUploadFolder() + "/"
 				+ file.getFileName();
 		File theFile = new File(fullFileName);
@@ -82,12 +76,16 @@ public class FileManagerImpl implements FileManager {
 				if (doc != null) {
 					
 					String fileName = file.getName();
-					String docId = fileDTO.getDocId();
+					String docId = Utils.getDocumentId();
+					String dateString = Utils.getDateString();
+					String filePath = file.getAbsolutePath();
 					doc.add(new Field("filename", fileName, Field.Store.YES,
 							Field.Index.UN_TOKENIZED));
 					doc.add(new Field("id", docId, Field.Store.YES,
 							Field.Index.UN_TOKENIZED));
-					doc.add(new Field("lastUpdated", Utils.getDateString(), Field.Store.YES,
+					doc.add(new Field("lastUpdated", dateString, Field.Store.YES,
+							Field.Index.UN_TOKENIZED));
+					doc.add(new Field("filePath", filePath, Field.Store.YES,
 							Field.Index.UN_TOKENIZED));
 					writer.addDocument(doc);
 				} else {
@@ -112,6 +110,22 @@ public class FileManagerImpl implements FileManager {
 		reader.close();
 	}
 	
+	public String getFilePathById(String docId) throws ParseException, CorruptIndexException, IOException {
+		
+		String filePath = "";	
+		String indexPath = ManagerResource.getFileIndexFolder();   
+		IndexSearcher is = new IndexSearcher(indexPath);
+		org.apache.lucene.search.Query query;
+		query = new TermQuery(new Term("id", docId));
+		Hits hits = is.search(query);
+		if (hits.length() > 0) {
+			
+			Document doc = hits.doc(0);
+			filePath = doc.get("filePath");	
+		}
+		return filePath;
+	}
+
 	public IList<FileUploadDTO> simpleSearch(int pageIndex, int pageSize, String searchString) throws ParseException, CorruptIndexException, IOException {
 		
 		List result = new LinkedList();
