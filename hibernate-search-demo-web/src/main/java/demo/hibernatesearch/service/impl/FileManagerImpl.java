@@ -135,7 +135,7 @@ public class FileManagerImpl implements FileManager {
 		      FileUploadDTO file = new FileUploadDTO();
 		      file.setDocId(doc.get("id"));
 		      file.setFileName(doc.get("filename"));
-		      file.setContent(doc.getBinaryValue("body"));
+		      file.setContent(doc.get("body"));
 		      result.add(file);
 		}
 				    
@@ -163,7 +163,7 @@ public class FileManagerImpl implements FileManager {
 		      FileUploadDTO file = new FileUploadDTO();
 		      file.setDocId(doc.get("id"));
 		      file.setFileName(doc.get("filename"));
-		      file.setContent(doc.getBinaryValue("body"));
+		      file.setContent(doc.get("body"));
 		      result.add(file);
 		}
 

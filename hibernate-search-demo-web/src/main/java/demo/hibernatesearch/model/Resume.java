@@ -29,6 +29,7 @@ import org.hibernate.search.annotations.DateBridge;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.FieldBridge;
+import org.hibernate.search.annotations.Fields;
 import org.hibernate.search.annotations.FullTextFilterDef;
 import org.hibernate.search.annotations.FullTextFilterDefs;
 import org.hibernate.search.annotations.Index;
@@ -62,8 +63,9 @@ public class Resume implements Serializable {
 	@IndexedEmbedded
 	private User applicant;
 
-	@org.hibernate.annotations.Index(name = "summaryIndex")
-	@Field(index = Index.TOKENIZED, store = Store.YES)
+	//@org.hibernate.annotations.Index(name = "summaryIndex")
+	@Fields({@Field(index = Index.TOKENIZED, store = Store.YES),@Field(name="summarySort",index = Index.UN_TOKENIZED, store = Store.YES)})
+	
 	private String summary;
 
 	@Lob

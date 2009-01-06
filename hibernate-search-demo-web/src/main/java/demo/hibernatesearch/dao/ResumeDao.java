@@ -56,11 +56,10 @@ public interface ResumeDao {
 	public Object getEntityLimit(Class...limit);
 	public Object seFetchStrategy() ;
 	public IList<Resume> getAllResum(int pageIndex, int pageSize);
-	
+	public IList<Resume> getAllResumAndSort(final int pageIndex, final int pageSize, final String sortField, final boolean reverse) ;
 	public User getUserByEmail(String emailAddress);
 	
-	public IList<Resume> simpleSearch(final int pageIndex, final int pageSize, String searchString);
-	
+	public IList<Resume> simpleSearch(final int pageIndex, final int pageSize,final String searchString, final String sortField, final boolean reverse)	;
 	public IList<Resume> simpleSearchWithEmail(final int pageIndex, final int pageSize,final String searchString, final String email);
 	
 	public IList<Resume> advanceSearch(final int pageIndex, final int pageSize, final AdvanceSearchDTO searchDTO);

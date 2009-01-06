@@ -159,4 +159,15 @@ public class Utils {
 		String dateString = df.format(new Date());
 		return dateString;
 	}
+	
+	public static String convertSortField(String value){
+		
+		if("Email".equals(value)){
+			return "applicant.emailAddress";
+		}else if("Summary".equals(value)){
+			return "summarySort";
+		}else{
+			return "lastUpdated";
+		} 
+	}
 }
