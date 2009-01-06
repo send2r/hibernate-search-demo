@@ -6,7 +6,7 @@ import java.net.URLDecoder;
 import com.opensymphony.xwork2.Action;
 
 import demo.hibernatesearch.application.Constants;
-import demo.hibernatesearch.model.AdvanceSearchDTO;
+import demo.hibernatesearch.model.FileAdvanceSearchDTO;
 import demo.hibernatesearch.model.FileUploadDTO;
 import demo.hibernatesearch.model.Resume;
 import demo.hibernatesearch.model.User;
@@ -18,14 +18,14 @@ public class AdvanceSearchAction extends SearchAction {
 	private String wordPhrase;
 	private String oneOrMore;
 	private String noneWords;
-	private String field;
 	private String fromDate;
 	private String toDate;
-		
+	private String docType;
+	
 	@Override
-	public IList<FileUploadDTO> search(int pageIndex, int pageSize) {
+	public IList<FileUploadDTO> search(int pageIndex, int pageSize) throws Exception {
 		
-		AdvanceSearchDTO searchDTO = new AdvanceSearchDTO();
+		FileAdvanceSearchDTO searchDTO = new FileAdvanceSearchDTO();
 		
 		try {
 			String strValue= URLDecoder.decode(allWords, "utf-8");
@@ -41,16 +41,15 @@ public class AdvanceSearchAction extends SearchAction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		searchDTO.setField(field);
+		searchDTO.setDocType(docType);
 		searchDTO.setFromDate(fromDate);
 		searchDTO.setToDate(toDate);
-		User currentUser = (User)session.get(Constants.CURRENT_USER);
-		IList<Resume> listResume = null;
-		if(currentUser == null) {
-			return null;
-		} else {
-			return null;
-		}
+		
+		IList<FileUploadDTO> result = fileManager.advanceSearch(pageIndex > 0
+				? pageIndex - 1
+						: pageIndex, Constants.PAGE_SIZE, searchDTO);
+		
+		return result;
 
 	}
 	public String initSearch() throws Exception{
@@ -81,12 +80,6 @@ public class AdvanceSearchAction extends SearchAction {
 	public void setNoneWords(String noneWords) {
 		this.noneWords = noneWords;
 	}
-	public String getField() {
-		return field;
-	}
-	public void setField(String field) {
-		this.field = field;
-	}
 	public String getFromDate() {
 		return fromDate;
 	}
@@ -99,5 +92,10 @@ public class AdvanceSearchAction extends SearchAction {
 	public void setToDate(String toDate) {
 		this.toDate = toDate;
 	}
-
+	public String getDocType() {
+		return docType;
+	}
+	public void setDocType(String docType) {
+		this.docType = docType;
+	}
 }

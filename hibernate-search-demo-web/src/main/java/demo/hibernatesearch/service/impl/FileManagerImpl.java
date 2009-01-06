@@ -22,13 +22,17 @@ import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
 import org.apache.lucene.search.Hits;
 import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.PhraseQuery;
 import org.apache.lucene.search.Query;
+import org.apache.lucene.search.RangeQuery;
 import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.WildcardQuery;
 import org.hibernate.search.jpa.FullTextQuery;
 import org.springframework.stereotype.Service;
 
 import demo.hibernatesearch.application.ManagerResource;
+import demo.hibernatesearch.model.FileAdvanceSearchDTO;
 import demo.hibernatesearch.model.FileUploadDTO;
 import demo.hibernatesearch.model.Resume;
 import demo.hibernatesearch.service.FileManager;
@@ -42,6 +46,8 @@ import demo.pyco.handler.FileHandlerException;
 public class FileManagerImpl implements FileManager {
 
 	protected FileHandler fileHandler;
+	
+	String field = "body";
 
 	public void indexFile(FileUploadDTO file) throws Exception {
 
@@ -141,4 +147,89 @@ public class FileManagerImpl implements FileManager {
         
 	}
 
+	public IList<FileUploadDTO> advanceSearch(final int pageIndex, final int pageSize,final FileAdvanceSearchDTO searchDTO) throws Exception {
+		
+		List result = new LinkedList();
+		IList pageList;
+		String indexPath = ManagerResource.getFileIndexFolder();   
+		IndexSearcher is = new IndexSearcher(indexPath);
+		BooleanQuery finalQuery = buildQuey(searchDTO);
+		Hits hits = is.search(finalQuery);
+		int resultSize = hits.length();
+		int firstResult = pageIndex*pageSize;
+		int lastResult = firstResult + pageSize;
+		for (int i = firstResult; i < lastResult && i < resultSize; i++) {
+		      Document doc = hits.doc(i);
+		      FileUploadDTO file = new FileUploadDTO();
+		      file.setDocId(doc.get("id"));
+		      file.setFileName(doc.get("filename"));
+		      file.setContent(doc.getBinaryValue("body"));
+		      result.add(file);
+		}
+
+		pageList = new ListImpl(resultSize, pageIndex, pageSize);
+		pageList.setList(result);
+		pageList.setSearchString(finalQuery.toString());
+		return pageList;
+	}
+	
+	private BooleanQuery buildQuey(FileAdvanceSearchDTO searchDTO) {
+		
+		
+		BooleanQuery finalQuery = new BooleanQuery();
+		if (searchDTO.getWordPhrase() != null && !"".equals(searchDTO.getWordPhrase().trim())) {
+			
+			String[] phrase = searchDTO.getWordPhrase().split(" ");
+			PhraseQuery phraseQuery = new PhraseQuery();
+			for (int i=0; i < phrase.length; i++) {
+				phraseQuery.add(new Term(field, phrase[i]));
+			}
+			finalQuery.add(phraseQuery, BooleanClause.Occur.MUST);
+		}
+		
+		if (searchDTO.getAllWords() != null && !"".equals(searchDTO.getAllWords().trim())) {
+			String[] allWordsArr = searchDTO.getAllWords().split(" ");
+			BooleanQuery queryAllWord = new BooleanQuery();
+			for (int i = 0; i < allWordsArr.length; i++) {
+				String string = allWordsArr[i];
+				queryAllWord.add(new TermQuery(new Term(field,string)), BooleanClause.Occur.MUST);
+			}
+			finalQuery.add(queryAllWord,BooleanClause.Occur.MUST);
+		}
+		if (searchDTO.getOneOrMore() != null && !"".equals(searchDTO.getOneOrMore().trim())) {
+			String[] oneOrMoreArr = searchDTO.getOneOrMore().split(" ");
+			BooleanQuery queryOneOrMore = new BooleanQuery();
+			for (int i = 0; i < oneOrMoreArr.length; i++) {
+				String string = oneOrMoreArr[i];
+				queryOneOrMore.add(new TermQuery(new Term(field,string)), BooleanClause.Occur.SHOULD);
+			}
+			finalQuery.add(queryOneOrMore,BooleanClause.Occur.MUST);
+		}
+		
+		if (searchDTO.getNoneWords() != null && !"".equals(searchDTO.getNoneWords().trim())) {
+			String[] noneWordsArr = searchDTO.getNoneWords().split(" ");
+			for (int i = 0; i < noneWordsArr.length; i++) {
+				String string = noneWordsArr[i];
+				finalQuery.add(new TermQuery(new Term(field,string)), BooleanClause.Occur.MUST_NOT);
+			}
+		}
+		
+		
+		Term from = null, to = null;
+		if (searchDTO.getFromDate() != null && !"".equals(searchDTO.getFromDate())) {
+			from = new Term("lastUpdated",searchDTO.getFromDate().replaceAll("-", ""));
+		}
+		if (searchDTO.getToDate() != null && !"".equals(searchDTO.getToDate()) ) {
+			to = new Term("lastUpdated",searchDTO.getToDate().replaceAll("-", ""));
+		}
+		if (from != null || to != null) {
+			RangeQuery range = new RangeQuery(from,to,true);
+			finalQuery.add(range, BooleanClause.Occur.MUST);
+		}
+		if ("".equals(finalQuery.toString())) {
+			finalQuery.add(new WildcardQuery(new Term("id","*")),BooleanClause.Occur.MUST);
+		}
+		
+		return finalQuery;		
+	}
 }
