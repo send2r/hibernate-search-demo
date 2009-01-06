@@ -111,7 +111,7 @@
 			</action>
 		
 			<action name="config-search" method="initSearch" class="demo.hibernatesearch.action.file.AdvanceSearchAction">
-       			<result name="success">/advancedSearch.jsp</result>       			
+       			<result name="success">/files/advancedSearch.jsp</result>       			
 			</action>
 			<action name="advanced-search" class="demo.hibernatesearch.action.file.AdvanceSearchAction">
        			<result name="success">/files.jsp</result>       			
