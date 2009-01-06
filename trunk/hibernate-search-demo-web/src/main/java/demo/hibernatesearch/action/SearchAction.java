@@ -26,6 +26,8 @@ public abstract class SearchAction implements Preparable, SessionAware,
 	protected Map session;
 	protected Map request;
 	protected String searchString;
+	protected String sortField;
+	protected String order;
 	
 	private String page;
 	private String query;
@@ -49,7 +51,7 @@ public abstract class SearchAction implements Preparable, SessionAware,
 		pagerModel.setPageSize(Constants.PAGE_SIZE);
 		pagerModel.setBaseLink("simple-search.htm");
 		pagerModel.setPageIndex(pageIndex);
-		pagerModel.setParams("searchString");
+		pagerModel.setParams("searchString, sortField, order");
 		pagerModel.setTotalItems(searchList.getTotalItemCount());
 		request.put("searchString", searchList.getSearchString());
 		searchString = searchList.getSearchString();
@@ -104,6 +106,22 @@ public abstract class SearchAction implements Preparable, SessionAware,
 
 	public void setSearchString(String searchString) {
 		this.searchString = searchString;
+	}
+
+	public String getSortField() {
+		return sortField;
+	}
+
+	public void setSortField(String sortField) {
+		this.sortField = sortField;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
 	}
 
 

@@ -16,6 +16,7 @@ import demo.hibernatesearch.model.User;
 import demo.hibernatesearch.service.ResumeManager;
 import demo.hibernatesearch.taglib.pager.PagerModel;
 import demo.hibernatesearch.util.IList;
+import demo.hibernatesearch.util.Utils;
 
 public class HomeAction implements Preparable, SessionAware, RequestAware {
 
@@ -24,6 +25,8 @@ public class HomeAction implements Preparable, SessionAware, RequestAware {
 	private Map session;
 	private Map request;
 	private String page;
+	private String sortField;
+	private String order;
 
 	public String getPage() {
 		return page;
@@ -57,13 +60,19 @@ public class HomeAction implements Preparable, SessionAware, RequestAware {
 		}catch(Exception e){
 			pageIndex = 0;
 		}
+		
 		User currentUser = (User)session.get(Constants.CURRENT_USER);
 		IList<Resume> listResume = null;
 		if(currentUser == null){
 		
-			listResume = resumeManager.getAllResum(pageIndex > 0
+			/*listResume = resumeManager.getAllResum(pageIndex > 0
 						? pageIndex - 1
-						: pageIndex, Constants.PAGE_SIZE);
+						: pageIndex, Constants.PAGE_SIZE);*/
+			boolean reverse = "ASC".equals(order) ? false: true;
+			String sortFieldT = Utils.convertSortField(sortField);
+			listResume = resumeManager.getAllResumAndSort(pageIndex > 0
+					? pageIndex - 1
+					: pageIndex, Constants.PAGE_SIZE, sortFieldT, reverse);
 		} else {
 			listResume = resumeManager.seFindResumesForUserWithPagination(currentUser.getEmailAddress(),pageIndex > 0
 					? pageIndex - 1
@@ -73,6 +82,7 @@ public class HomeAction implements Preparable, SessionAware, RequestAware {
 		request.put("listResume", listResume);
 		PagerModel pagerModel = (PagerModel)ServletActionContext.getServletContext().getAttribute(Constants.PAGER_MODEL);
 		pagerModel.setPageSize(Constants.PAGE_SIZE);
+		pagerModel.setParams("order, sortField");
 		pagerModel.setBaseLink("home.htm");
 		pagerModel.setPageIndex(pageIndex);
 		pagerModel.setTotalItems(listResume.getTotalItemCount());
@@ -83,7 +93,28 @@ public class HomeAction implements Preparable, SessionAware, RequestAware {
 
 	public void prepare() throws Exception {
 		// TODO Auto-generated method stub
+		if(order == null || "".equals(order)){
+			order = "ASC";
+		}
+		if(sortField == null || "".equals(sortField)){
+			sortField = "Email";
+		}
+	}
+	
+	public String getSortField() {
+		return sortField;
+	}
 
+	public void setSortField(String sortField) {
+		this.sortField = sortField;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
 	}
 
 	public void setSession(Map session) {
