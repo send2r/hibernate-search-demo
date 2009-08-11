@@ -72,9 +72,6 @@ public class PDFBoxPDFHandler implements DocumentHandler {
       closeCOSDocument(cosDoc);
       throw new DocumentHandlerException(
         "Cannot parse PDF document", e);
-//       String errS = e.toString();
-//       if (errS.toLowerCase().indexOf("font") != -1) {
-//       }
     }
 
     Document doc = new Document();
@@ -111,9 +108,10 @@ public class PDFBoxPDFHandler implements DocumentHandler {
       closePDDocument(pdDoc);
       System.err.println("Cannot get PDF document meta-data: "
         + e.getMessage());
+    } finally {
+	    closeCOSDocument(cosDoc);
+	    closePDDocument(pdDoc);
     }
-    closeCOSDocument(cosDoc);
-    closePDDocument(pdDoc);
     return doc;
   }
 
