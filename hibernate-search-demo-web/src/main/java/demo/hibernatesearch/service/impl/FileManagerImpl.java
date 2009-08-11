@@ -95,9 +95,10 @@ public class FileManagerImpl implements FileManager {
 			} catch (IOException e) {
 				System.err.println("Cannot index " + file.getAbsolutePath()
 						+ "; skipping (" + e.getMessage() + ")");
+			} finally {
+				writer.optimize();
+				writer.close();
 			}
-			writer.optimize();
-			writer.close();
 		}
 	}
 
