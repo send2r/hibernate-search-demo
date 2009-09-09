@@ -62,7 +62,7 @@ public class HomeFilesAction implements Preparable, SessionAware, RequestAware {
 				? pageIndex - 1
 						: pageIndex, Constants.PAGE_SIZE, "");
 		
-		/*for(int i = 0; i < 5; i++){
+		/*for(int i = 0; i < 5; i++) {
 			FileUploadDTO fileUpload  = new FileUploadDTO();
 			fileUpload.setFileName("File " + (i+1));
 			fileUpload.setMineType("image/jpg");
@@ -80,11 +80,11 @@ public class HomeFilesAction implements Preparable, SessionAware, RequestAware {
 		return Action.SUCCESS;
 	}
 
-	public String downloadFile() throws Exception{
+	public String downloadFile() throws Exception {
 		return Action.NONE;
 	}
 	
-	public String deleteFile() throws Exception{
+	public String deleteFile() throws Exception {
 		return Action.SUCCESS;
 	}
 	
