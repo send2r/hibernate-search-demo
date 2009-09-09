@@ -5,8 +5,6 @@
         <navigation-mapping name="FILES_SECTION" value=".*/file/.*"/>
     </navigation-setting>
     <upload-folder value="d:/upload"/>
-    <file-index-folder value="d:/indexes"/>
-    <page-size value="2"/>
+    <file-index-folder value="D:/indexes/filesearch"/>
+    <page-size value="5"/>
 </configuration>
-
-

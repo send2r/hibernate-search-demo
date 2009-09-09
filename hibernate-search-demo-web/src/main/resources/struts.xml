@@ -63,7 +63,7 @@
 		
 		<action name="save-newresume" class="demo.hibernatesearch.action.NewResumeAction">        			 			
        			<result name="input">/resume/resume-add.jsp</result>       			
-       			<result name="success" type="redirect">/home.htm?page=${page}</result>       			
+       			<result name="success" type="redirect-action">/home.htm?page=${page}</result>       			
 		</action>
 		
 		<action name="edit-resume" method="editResume" class="demo.hibernatesearch.action.NewResumeAction">        			 			
@@ -72,7 +72,7 @@
 		</action>
 		
 		<action name="save-editresume" method="saveEditResume" class="demo.hibernatesearch.action.NewResumeAction">        			 			
-       			<result type="redirect">/home.htm?page=${page}</result>       			
+       			<result type="redirect-action">/home.htm?page=${page}</result>       			
 		</action>
 		
 		<action name="delete-resume" method="deleteResume" class="demo.hibernatesearch.action.NewResumeAction">        			 			
@@ -86,7 +86,7 @@
 	
 		<action name="config-search" method="initSearch" class="demo.hibernatesearch.action.AdvanceSearchAction">
 				<interceptor-ref name="nonAuthorStack" />      			 			
-       			<result name="success">/advancedSearch.jsp</result>       			
+       			<result name="success">/resume/advancedSearch.jsp</result>       			
 		</action>
 		<action name="advanced-search" class="demo.hibernatesearch.action.AdvanceSearchAction">
 				<interceptor-ref name="nonAuthorStack" />      			 			
@@ -101,26 +101,27 @@
     <package name="file" namespace="/file" extends="public">
 	   	  <default-interceptor-ref name="nonAuthorStack" />
 	   	  <action name="file" method="execute" class="demo.hibernatesearch.action.file.HomeFilesAction">
-	           <result name="success">/files.jsp</result>
+	           <result name="success">/files/files.jsp</result>
 	       </action>
 	       <action name="doUpload" method="execute" class="demo.hibernatesearch.action.file.FileUploadAction">
 	           <result name="success" type="redirect-action">file</result>
+	           <result name="input" type="redirect-action">file</result>
 	       </action>
 	       <action name="simple-search" class="demo.hibernatesearch.action.file.SimpleSearchAction">        			 			
-       			<result name="success">/files.jsp</result>       			
+       			<result name="success">/files/files.jsp</result>       			
 			</action>
 		
 			<action name="config-search" method="initSearch" class="demo.hibernatesearch.action.file.AdvanceSearchAction">
        			<result name="success">/files/advancedSearch.jsp</result>       			
 			</action>
 			<action name="advanced-search" class="demo.hibernatesearch.action.file.AdvanceSearchAction">
-       			<result name="success">/files.jsp</result>       			
+       			<result name="success">/files/files.jsp</result>       			
 			</action>
 			<action name="download-file" method="downloadFile" class="demo.hibernatesearch.action.file.HomeFilesAction">
 			</action>
 			
 			<action name="delete-file" method="deleteFile" class="demo.hibernatesearch.action.file.HomeFilesAction">
-       			<result name="success" type="redirect-action">files</result>       			
+       			<result name="success" type="redirect-action">file</result>       			
 			</action>
 			
     </package>
