@@ -57,7 +57,6 @@ public abstract class SearchAction implements Preparable, SessionAware,
 		searchString = searchList.getSearchString();
 		request.put("listResume", searchList);
 		request.put("pager", pagerModel);
-
 		return Action.SUCCESS;
 	}
 
