@@ -1,7 +1,14 @@
 package demo.hibernatesearch.action.file;
 
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.lucene.queryParser.ParseException;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -13,10 +20,13 @@ import com.opensymphony.xwork2.Preparable;
 import demo.hibernatesearch.application.Constants;
 import demo.hibernatesearch.model.FileUploadDTO;
 import demo.hibernatesearch.service.FileManager;
+
 import demo.hibernatesearch.taglib.pager.PagerModel;
 import demo.hibernatesearch.util.IList;
 
 public class HomeFilesAction implements Preparable, SessionAware, RequestAware {
+	
+	private static final int BUFSIZE = 1024;
 
 	@Autowired
 	private FileManager fileManager;
@@ -40,8 +50,6 @@ public class HomeFilesAction implements Preparable, SessionAware, RequestAware {
 	public Map getRequest() {
 		return request;
 	}
-
-
 
 	public FileManager getFileManager() {
 		return fileManager;
@@ -80,11 +88,38 @@ public class HomeFilesAction implements Preparable, SessionAware, RequestAware {
 		return Action.SUCCESS;
 	}
 
-	public String downloadFile() throws Exception {
+	public String downloadFile() throws IOException, ParseException {
+		
+		HttpServletResponse response = ServletActionContext.getResponse();
+		ServletOutputStream outputStr       = response.getOutputStream();
+		String fileName = fileManager.getFilePathById(docId);
+		if (!"".equals(fileName)) {
+			String downloadFileName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+			downloadFileName = downloadFileName.replaceAll(" ", "_");
+			response.setContentType("application/octet-stream");
+			response.setHeader("Cache-Control", "no-cache");
+			response.setHeader("Content-Disposition", "attachment;filename=" + downloadFileName);
+			DataInputStream inputStr = null;
+			try {
+				byte[] bbuf = new byte[BUFSIZE];
+		        inputStr = new DataInputStream(new FileInputStream(fileName));
+		        int length = 0;
+		        while ((inputStr != null) && ((length = inputStr.read(bbuf)) != -1)) {
+		        	outputStr.write(bbuf,0,length);
+		        }
+			} catch (IOException ioe) {
+				// TODO: handle exception
+			} finally {
+				inputStr.close();
+		        outputStr.flush();
+		        outputStr.close();
+			}
+		}
 		return Action.NONE;
 	}
 	
 	public String deleteFile() throws Exception {
+		fileManager.deleteIndex(docId);
 		return Action.SUCCESS;
 	}
 	
@@ -100,7 +135,6 @@ public class HomeFilesAction implements Preparable, SessionAware, RequestAware {
 
 	public void setRequest(Map request) {
 		this.request = request;
-
 	}
 
 	public String getDocId() {
