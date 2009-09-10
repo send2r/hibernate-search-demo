@@ -24,4 +24,10 @@ public interface FileManager {
 	public IList<FileUploadDTO> advanceSearch(final int pageIndex,
 			final int pageSize, final FileAdvanceSearchDTO searchDTO)
 			throws Exception;
+	
+	public String getFilePathById(String docId) throws ParseException, CorruptIndexException, IOException;
+	
+	
+	public void downloadFile(String docId) throws Exception;
+	
 }
