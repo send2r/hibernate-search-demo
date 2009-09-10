@@ -533,7 +533,6 @@ public IList<Resume> getAllResumAndSort(final int pageIndex, final int pageSize,
 				
 				IList pageList = null;
 				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
-							
 				try {
 					org.apache.lucene.search.Query query;
 					if ("".equals(searchString) || "*".equals(searchString)) {
@@ -585,10 +584,10 @@ public IList<Resume> getAllResumAndSort(final int pageIndex, final int pageSize,
 					}
 					
 					TermQuery query02 = new TermQuery(new Term("applicant.emailAddress", email));
-					BooleanQuery bQuery = new BooleanQuery();
-					bQuery.add(query01,BooleanClause.Occur.MUST);
-					bQuery.add(query02,BooleanClause.Occur.MUST);
-					FullTextQuery fq = fullTextEntityManager.createFullTextQuery(bQuery, Resume.class);
+					BooleanQuery finalQuery = new BooleanQuery();
+					finalQuery.add(query01,BooleanClause.Occur.MUST);
+					finalQuery.add(query02,BooleanClause.Occur.MUST);
+					FullTextQuery fq = fullTextEntityManager.createFullTextQuery(finalQuery, Resume.class);
 					fq.setFirstResult(pageIndex*pageSize).setMaxResults(pageSize);
 					pageList = new ListImpl(fq.getResultSize(), pageIndex, pageSize);
 					pageList.setList(fq.getResultList());
@@ -613,7 +612,6 @@ public IList<Resume> getAllResumAndSort(final int pageIndex, final int pageSize,
 			public Object doInJpa(EntityManager em) throws PersistenceException {
 				
 				BooleanQuery finalQuery = buildQuey(searchDTO);
-					
 				IList pageList = null;
 				FullTextEntityManager fullTextEntityManager = createFullTextEntityManager(em);
 				FullTextQuery fq = fullTextEntityManager.createFullTextQuery(finalQuery, Resume.class);
