@@ -65,7 +65,6 @@ public class Resume implements Serializable {
 
 	//@org.hibernate.annotations.Index(name = "summaryIndex")
 	@Fields({@Field(index = Index.TOKENIZED, store = Store.YES),@Field(name="summarySort",index = Index.UN_TOKENIZED, store = Store.YES)})
-	
 	private String summary;
 
 	@Lob
@@ -77,7 +76,7 @@ public class Resume implements Serializable {
 	@Field(index = Index.UN_TOKENIZED, store = Store.YES)
 	@DateBridge(resolution = Resolution.DAY)
 	@Boost(2.0f)
-	private Date lastUpdated; // can't project
+	private Date lastUpdated; //can't project
 
 	public Long getId() {
 		return id;
@@ -118,7 +117,8 @@ public class Resume implements Serializable {
 	public void setLastUpdated(Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
 	}
-	public String getContentString(){
+	/*
+	public String getContentString() {
 		
 		StringBuilder _result = new StringBuilder();
 		try {
@@ -142,6 +142,7 @@ public class Resume implements Serializable {
 		}
 		return _result.toString();
 	}
+	*/
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this,
 				ToStringStyle.MULTI_LINE_STYLE);
