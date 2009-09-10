@@ -1,6 +1,8 @@
 package demo.hibernatesearch.service.impl;
 
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.LinkedList;
@@ -109,6 +111,42 @@ public class FileManagerImpl implements FileManager {
 		IndexReader reader = IndexReader.open(indexPath);
 		reader.deleteDocuments(new Term("id", docId));
 		reader.close();
+	}
+	
+	public void downloadFile(String docId) throws Exception {
+		
+//		String filePath = getFilePathById(docId);
+//		
+//		File                f        = new File(filename);
+//        int                 length   = 0;
+//        ServletOutputStream op       = resp.getOutputStream();
+//        ServletContext      context  = getServletConfig().getServletContext();
+//        String              mimetype = context.getMimeType( filename );
+//
+//        //
+//        //  Set the response and go!
+//        //
+//        //
+//        resp.setContentType( (mimetype != null) ? mimetype : "application/octet-stream" );
+//        resp.setContentLength( (int)f.length() );
+//        resp.setHeader( "Content-Disposition", "attachment; filename=\"" + original_filename + "\"" );
+//
+//        //
+//        //  Stream to the requester.
+//        //
+//        byte[] bbuf = new byte[BUFSIZE];
+//        DataInputStream in = new DataInputStream(new FileInputStream(f));
+//
+//        while ((in != null) && ((length = in.read(bbuf)) != -1))
+//        {
+//            op.write(bbuf,0,length);
+//        }
+//
+//        in.close();
+//        op.flush();
+//        op.close();
+        
+
 	}
 	
 	public String getFilePathById(String docId) throws ParseException, CorruptIndexException, IOException {
