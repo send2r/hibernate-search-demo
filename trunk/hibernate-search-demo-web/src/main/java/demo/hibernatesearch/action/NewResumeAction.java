@@ -89,7 +89,7 @@ public class NewResumeAction extends ActionSupport implements SessionAware, Requ
 		request.put("resume", resume);
 		return Action.SUCCESS;
 	}
-	public String saveEditResume() throws Exception{
+	public String saveEditResume() throws Exception {
 		System.out.println(" saveEditResume >>>>>>>>>>>>>>>>>>>" + id);
 		Resume resume = new Resume();
 		resume.setId(Long.valueOf(id));
