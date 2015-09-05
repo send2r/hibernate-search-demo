@@ -1,0 +1,1 @@
+this is a hibernate search demo, created by Nguyen Cong Son
